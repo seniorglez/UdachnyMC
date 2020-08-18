@@ -16,9 +16,8 @@ public class App
 
         CommandSender commandSender = new CommandSender(mcProcess);
         get("/mc", (request, response) ->{
-            System.out.println(request.queryParams("msg"));
-            commandSender.sendMessage(request.queryParams("msg"));
-            return "thanks";
+            int responseCode =commandSender.sendMessage(request.queryParams("msg"));
+            return (responseCode >= 0)?"command executed":"The command does not exist of has been deactivated";
         } );
 
         

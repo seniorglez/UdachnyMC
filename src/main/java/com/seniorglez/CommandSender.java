@@ -3,20 +3,29 @@ package com.seniorglez;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 public class CommandSender {
 
     private final Process mcProcess;
     private final OutputStreamWriter mcWriter;
+    private final PropertiesReader propertiesReader;
 
     public CommandSender(Process mcProcess) throws IOException {
         this.mcProcess = mcProcess;
         OutputStream serverInput = mcProcess.getOutputStream();
         mcWriter = new OutputStreamWriter(serverInput);
+        propertiesReader = new PropertiesReader();
     }
 
-    public void sendMessage(String msg) throws IOException {
+
+    public int sendMessage(String msg) throws IOException {
+        String command  = Arrays.stream(msg.split(" ")).findFirst().get();
+        System.out.println("trying to execute a " + command + " command");
+        String propertieValue = propertiesReader.getProperty(command);
+        if(!Boolean.parseBoolean(propertieValue)) return -1;
         mcWriter.write(msg + "\n");
         mcWriter.flush();
+        return 0;
     }
 }
