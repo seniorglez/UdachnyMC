@@ -1,5 +1,7 @@
 package com.seniorglez;
 
+import com.seniorglez.util.PropertiesReader;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -19,9 +21,9 @@ public class CommandSender {
     }
 
     public int sendMessage(String msg) throws IOException {
-        String command  = Arrays.stream(msg.split(" ")).findFirst().get();
-        System.out.println("trying to execute a " + command + " command");
-        String propertyValue = propertiesReader.getProperty(command);
+        String command  = Arrays.stream( msg.split(" ") ).findFirst().get();
+        System.out.println( "trying to execute a " + command + " command" );
+        String propertyValue = propertiesReader.getProperty( command );
         if(!Boolean.parseBoolean(propertyValue)) return -1;
         mcWriter.write(msg + "\n");
         mcWriter.flush();

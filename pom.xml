@@ -5,12 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.seniorglez</groupId>
-  <artifactId>minecraft-server-helper</artifactId>
+  <artifactId>minecraft-server-rest</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>minecraft-server-helper</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <name>minecraft-server-rest</name>
+  <url>https://github.com/seniorglez/minecraft-server-REST</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,7 +47,7 @@
     </dependency>
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+      <artifactId>jjwt-jackson</artifactId>
       <version>0.11.2</version>
       <scope>runtime</scope>
     </dependency>

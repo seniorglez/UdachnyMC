@@ -2,9 +2,8 @@ package com.seniorglez.user;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class UserDAO {
+public class UserDAO { //Eventually this class will access to a MariaDB database through the Hibernate lib.
 
     private final List<User> users = Arrays.asList(
             new User("Marco", "Passw0rd"),
@@ -23,7 +22,4 @@ public class UserDAO {
         return users.stream().filter(b -> b.getUsername().equals(username)).findFirst().orElse(null);
     }
 
-    public Iterable<String> getAllUserNames() {
-        return users.stream().map(User::getUsername).collect(Collectors.toList());
-    }
 }
