@@ -33,23 +33,27 @@ public class ServerController
         //System.out.println("key: " + secretString); // just for debugging proposes
 
 
-        get("/mc", (request, response) -> {
-            int responseCode = commandSender.sendMessage(request.queryParams("msg"));
-            return (responseCode >= 0)?"command executed":"The command does not exist of has been deactivated";
+        post("/mc", ( request, response ) -> {
+            Jws<Claims> jws = serverController.decodeJWT(request.queryParams("token"));
+            if(serverController.validateJWT(jws)) {
+                int responseCode = commandSender.sendMessage(request.queryParams("msg"));
+                return (responseCode >= 0)?"command executed":"The command does not exist of has been deactivated";
+            }
+            return "The token is not valid";
         } );
 
-        post("/login", (request, response) -> {
-            String name = request.queryParams("name");
-            String password = request.queryParams("password");
-            User current = UserDAO.getInstance().getUserByUsername(name);
+        post("/login", ( request, response ) -> {
+            String name = request.queryParams( "name" );
+            String password = request.queryParams( "password" );
+            User current = UserDAO.getInstance().getUserByUsername( name );
             if(current != null) {
-                if(current.getPassword().equals(password)) {
+                if(current.getPassword().equals( password )) {
                     response.type("json");
                     String jwt = Jwts.builder()
-                            .signWith(secretKey)
-                            .setSubject(name)
-                            .setIssuedAt(new Date())
-                            .setExpiration(new Date(System.currentTimeMillis()+604800000))
+                            .signWith( secretKey )
+                            .setSubject( name )
+                            .setIssuedAt( new Date() )
+                            .setExpiration( new Date(System.currentTimeMillis()+604800000) )
                             .compact();
                     return jwt;
                 }
@@ -65,18 +69,25 @@ public class ServerController
         Process mcProcess = mcProcessBuilder.start();
         InputStream serverOutput = mcProcess.getInputStream();
         new Thread(() -> {
-            Stream<String> lines = new BufferedReader(new InputStreamReader(serverOutput)).lines();
+            Stream<String> lines = new BufferedReader(new InputStreamReader( serverOutput )).lines();
             lines.forEach(l -> System.out.println(l));
         }).start();
         return mcProcess;
     }
 
-    private String decodeJWT(String token) {
+    private Jws<Claims> decodeJWT( String token ) {
+        if ( token==null || token.isEmpty() ) return null;
         Jws<Claims> jws;
             jws = Jwts.parserBuilder()
-                    .setSigningKey(secretKey)
+                    .setSigningKey( secretKey )
                     .build()
-                    .parseClaimsJws(token);
-        return "";
+                    .parseClaimsJws( token );
+        return jws;
+    }
+
+    private  boolean validateJWT( Jws<Claims> jws ) {
+        if( jws == null ) return false;
+        Date expirationDate = jws.getBody().getExpiration();
+        return expirationDate.after( new Date() );
     }
 }
