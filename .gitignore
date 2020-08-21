@@ -31,7 +31,7 @@ bin/
 build/
 .gradle
 .gradletasknamecache
-gradle-app.setting
+gradle-serverController.setting
 !gradle-wrapper.jar
 
 ##############################
