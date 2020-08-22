@@ -10,7 +10,6 @@ import javax.crypto.SecretKey;
 import java.io.*;
 import java.util.Date;
 import java.util.stream.Stream;
-
 import static spark.Spark.*;
 
 /**
@@ -28,8 +27,8 @@ public class ServerController {
         post("/mc", (request, response) -> {
             Jws<Claims> jws = serverController.decodeJWT(request.queryParams("token"));
             if (serverController.validateJWT(jws)) {
-                int responseCode = commandSender.sendMessage(request.queryParams("msg"));
-                return (responseCode >= 0) ? "command executed" : "The command does not exist of has been deactivated";
+                boolean commandSenderResponse = commandSender.sendMessage(request.queryParams("msg"));
+                return ( commandSenderResponse ) ? "command executed" : "The command does not exist of has been deactivated";
             }
             return "The token is not valid";
         });
@@ -47,7 +46,7 @@ public class ServerController {
                         .compact();
                 return jwt;
             }
-            return "Sorry username or password incorrect";
+            return "Sorry, username or password incorrect";
         });
     }
 

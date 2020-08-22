@@ -7,6 +7,9 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
+/**
+ * A class which allows to send commands to the minecraft server.
+ */
 public class CommandSender {
 
     private final Process mcProcess;
@@ -17,16 +20,18 @@ public class CommandSender {
         this.mcProcess = mcProcess;
         OutputStream serverInput = mcProcess.getOutputStream();
         mcWriter = new OutputStreamWriter(serverInput);
-        propertiesReader = new PropertiesReader();
+        propertiesReader = new PropertiesReader("commands");
     }
 
-    public int sendMessage(String msg) throws IOException {
+    public boolean sendMessage(String msg) throws IOException {
         String command  = Arrays.stream( msg.split(" ") ).findFirst().get();
         System.out.println( "trying to execute a " + command + " command" );
         String propertyValue = propertiesReader.getProperty( command );
-        if(!Boolean.parseBoolean(propertyValue)) return -1;
+        if(!Boolean.parseBoolean(propertyValue)) return false;
         mcWriter.write(msg + "\n");
         mcWriter.flush();
-        return 0;
+        return true;
     }
+
+
 }
