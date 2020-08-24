@@ -1,5 +1,7 @@
 package com.seniorglez;
 
+import com.google.gson.Gson;
+import com.seniorglez.model.Credentials;
 import com.seniorglez.user.UserController;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -18,11 +20,13 @@ import static spark.Spark.*;
 public class ServerController {
     private static SecretKey secretKey;
 
+
     public static void main(String[] args) throws IOException {
         ServerController serverController = new ServerController();
         Process mcProcess = serverController.CreateMinecraftProcess();
         CommandSender commandSender = new CommandSender(mcProcess);
         secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        Gson gson = new Gson();
 
         post("/mc", (request, response) -> {
             Jws<Claims> jws = serverController.decodeJWT(request.queryParams("token"));
@@ -34,13 +38,13 @@ public class ServerController {
         });
 
         post("/login", (request, response) -> {
-            String name = request.queryParams("name");
-            String password = request.queryParams("password");
-            if (UserController.authenticate(name, password)) {
+            String json = request.queryParams("credentials");
+            Credentials credentials = gson.fromJson(json, Credentials.class);
+            if (UserController.authenticate(credentials.getUsername(), credentials.getPassword())) {
                 response.type("json");
                 String jwt = Jwts.builder()
                         .signWith(secretKey)
-                        .setSubject(name)
+                        .setSubject(credentials.getUsername())
                         .setIssuedAt(new Date())
                         .setExpiration(new Date(System.currentTimeMillis() + 604800000))
                         .compact();

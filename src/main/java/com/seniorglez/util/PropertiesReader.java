@@ -13,7 +13,6 @@ public class PropertiesReader {
 
     private Properties properties;
 
-
     /**
      * Constructs a new {@link PropertiesReader} with the given value.
      * @param filename String which represents the name of the properties file.
