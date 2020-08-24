@@ -1,6 +1,7 @@
 package com.seniorglez;
 
 import com.google.gson.Gson;
+import com.seniorglez.model.CommandRequest;
 import com.seniorglez.model.Credentials;
 import com.seniorglez.user.UserController;
 import io.jsonwebtoken.Claims;
@@ -20,7 +21,6 @@ import static spark.Spark.*;
 public class ServerController {
     private static SecretKey secretKey;
 
-
     public static void main(String[] args) throws IOException {
         ServerController serverController = new ServerController();
         Process mcProcess = serverController.CreateMinecraftProcess();
@@ -29,9 +29,11 @@ public class ServerController {
         Gson gson = new Gson();
 
         post("/mc", (request, response) -> {
-            Jws<Claims> jws = serverController.decodeJWT(request.queryParams("token"));
+            String json = request.queryParams("commandRequest");
+            CommandRequest commandRequest = gson.fromJson(json, CommandRequest.class);
+            Jws<Claims> jws = serverController.decodeJWT(commandRequest.getToken());
             if (serverController.validateJWT(jws)) {
-                boolean commandSenderResponse = commandSender.sendMessage(request.queryParams("msg"));
+                boolean commandSenderResponse = commandSender.sendMessage(commandRequest.getCommand());
                 return ( commandSenderResponse ) ? "command executed" : "The command does not exist of has been deactivated";
             }
             return "The token is not valid";
