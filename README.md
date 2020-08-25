@@ -86,12 +86,28 @@ You should get something like this:
 	OS name: "linux", version: "5.4.15-arch1-1", arch: "amd64", family: "unix"
 
 ```
+## Build
+
+To generate a executable jar you have to use the maven-assembly-plugin:
+
+```
+     mvn clean compile assembly:single  
+```
+
+## Run the project
+
+As long the main class is being declare on the main manifest you can just invoke the java command with the -jar option.
+
+```
+    java -jar target/minecraft-server-rest-1.0-SNAPSHOT.jar
+```
 
 ## Built With
 
 * [Maven](https://maven.apache.org/) - The software project management tool.
 * [Spark](http://sparkjava.com/) - The framework for creating web applications.
 * [JJWT](https://github.com/jwtk/jjwt) - The JSON Web Token library for Java and Android.
+* [Gson](https://github.com/google/gson) - The Google's JSON converter.
 * [JUnit](https://junit.org/junit4/) - The unit testing framework.
 
 
