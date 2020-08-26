@@ -127,7 +127,7 @@ Feel free to fork it and made pull request if you think that your own version is
 
 Copyright (C) 2020 Diego Dominguez Gonzalez
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License 
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License 
 as published by the Free Software Foundation; either version 3 of the License, or any later version.
 
 This program is distributed in the hope that it will be useful,
