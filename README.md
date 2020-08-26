@@ -38,30 +38,22 @@ We have to install maven to package this project.
 
 If you use **Arch Linux or Arch-based** distros:
 ```bash
-	
 	sudo pacman -S maven
-	
 ```
 If you use **ubuntu/devian-based** distros:
 
 ```bash
-
-    sudo apt install maven
-
+	sudo apt install maven
 ```
 If you use **MacOS** in order to install maven you will have to install [Homebrew](https://brew.sh/)
 
 ```bash
-
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
 ```
 And now you can just install maven with this package manager:
 
 ```bash
-    
-    brew install maven
-    
+	brew install maven
 ```
 If you are using **Windows** download maven form the [maven website](http://maven.apache.org/download.cgi). And the follow the
 guide and the advice of the [installation guide](http://maven.apache.org/install.html).
@@ -71,14 +63,12 @@ guide and the advice of the [installation guide](http://maven.apache.org/install
 Now we can check if maven works properly
 
 ```bash
-
 	mvn -version
-
 ```
 
 You should get something like this:
 
-```
+```bash
 	Apache Maven 3.6.3 (NON-CANONICAL_2019-11-27T20:26:29Z_root)
 	Maven home: /opt/maven
 	Java version: 11.0.6, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-11-openjdk
@@ -90,7 +80,7 @@ You should get something like this:
 
 To generate a executable jar you have to use the maven-assembly-plugin:
 
-```
+```bash
      mvn clean compile assembly:single  
 ```
 
@@ -98,7 +88,7 @@ To generate a executable jar you have to use the maven-assembly-plugin:
 
 As long the main class is being declare on the main manifest you can just invoke the java command with the -jar option.
 
-```
+```bash
     java -jar target/minecraft-server-rest-1.0-SNAPSHOT.jar
 ```
 
