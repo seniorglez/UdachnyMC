@@ -92,6 +92,31 @@ As long the main class is being declare on the main manifest you can just invoke
     java -jar target/minecraft-server-rest-1.0-SNAPSHOT.jar
 ```
 
+## Use the API
+
+First and foremost I´m using [HTTPie](https://httpie.org/) for these examples.
+
+### login
+
+In order to login you will have to post a json as the credentials value to the /login url. It will return a jwt.
+
+```bash
+ http -f POST localhost:4567/login credentials="{
+  "username": "Diego",
+  "password": "Passw0rd" }"
+```
+
+### Send a command
+
+In order to send a command you will need to post a json as the commandRequest value to the /mc url. The server will execute 
+the command only if the jwt is a valid one, and the app did not block that command on the commands.properties file.
+
+```bash
+http -f POST localhost:4567/mc commandRequest="{
+  "command": 'say hola',
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEaWVnbyIsImlhdCI6MTU5ODI4Nzk2MywiZXhwIjoxNTk4ODkyNzYzfQ.nQrUuXb_sZWPiZgLacTlSr4STkG4FqCBvdMRT65drzo"
+}"
+``
 ## Built With
 
 * [Maven](https://maven.apache.org/) - The software project management tool.
