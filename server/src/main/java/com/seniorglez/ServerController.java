@@ -59,7 +59,7 @@ public class ServerController {
     private Process CreateMinecraftProcess() throws IOException {
         System.out.println("Starting Server!");
         ProcessBuilder mcProcessBuilder = new ProcessBuilder("java", "-Xmx1024M", "-Xms1024M", "-jar", "server.jar", "nogui");
-        mcProcessBuilder.directory(new File("/Users/diego/Developer/Playground/minecraftserver"));
+        mcProcessBuilder.directory(new File(System.getProperty("user.home")));
         Process mcProcess = mcProcessBuilder.start();
         InputStream serverOutput = mcProcess.getInputStream();
         new Thread(() -> {
