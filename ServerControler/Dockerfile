@@ -10,6 +10,6 @@ RUN mvn -f /home/app/pom.xml clean compile assembly:single
 # Package stage
 #
 FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/minecraft-server-rest-1.0.0.jar /usr/local/lib/demo.jar
+COPY --from=build /home/app/target/minecraft-server-rest-1.0.0.jar /usr/local/lib/serverController.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/serverController.jar"]
