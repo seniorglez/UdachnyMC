@@ -7,6 +7,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
+First of all download and store the Minecraft server you want to use in the ServerControler directory. You can get one from the [Mojang website](https://www.minecraft.net/en-us/download/server/).
+
 #### Java
 
 In order to run Maven you will need to install Java's JDK but as long we are using Maven we didn't need to have the
