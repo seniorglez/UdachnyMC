@@ -16,7 +16,7 @@ services:
     image: dhoer/flyway:alpine
     command: -url=jdbc:mysql://db -schemas=myschema -user=root -password=P@ssw0rd migrate
     volumes:
-      - .:/flyway/sql
+      - ./sql_versions:/flyway/sql
     depends_on:
       - db
   db:
