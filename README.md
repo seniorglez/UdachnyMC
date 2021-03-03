@@ -1,96 +1,41 @@
 # minecraft-server-REST
+
 A java application which provides a API REST to execute commands on a minecraft server.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. This project is planned to be launched in docker with docker-compose but if you don't want to use docker follow [these instructions](/docks/DockerlessBuild.md).
 
 ### Prerequisites
 
-#### Java
+First of all download and store the Minecraft server you want to use in the ServerControler directory. You can get one from the [Mojang website](https://www.minecraft.net/en-us/download/server/).
 
-In order to run Maven you will need to install Java's JDK but as long we are using Maven we didn't need to have the
-specific version of Java that we are using to write owr project (Maven will compile on JDK8 anyway). I recommend to install versions older 
-that JDK8 (minimum JDK7). On my case I'm using OpenJDK8.
+#### Docker 
 
-I think that everybody who works with Java already knows how to set his JAVA_HOME system variable, but some of you use to set it like this:
+You only need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://docs.docker.com/get-docker/) if you use Windows. 
 
-```bash
-    export JAVA_HOME="/usr/lib/jvm/java-8-openjdk/bin"
-    
-    export PATH=$JAVA_HOME/bin:$PATH
+#### Docker-compose 
 
-```
+You only need to download docker-compose from the package manager of your distribution or see how to install it [from this link](https://docs.docker.com/compose/install/) if you use MacOS or Windows. 
 
-With the most of the programs this will works nice but Maven will not recognize this variable as a valid one. If you have set up
-your JAVA_HOME like this the only think you need to do is to remove that /bin. 
+### Build it
+
+To build the docker containers just call:
 
 ```bash
-    export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-    
-    export PATH=$JAVA_HOME/bin:$PATH
-
+     docker-compose build 
 ```
 
-#### Maven
+### Run it 
 
-We have to install maven to package this project.
-
-If you use **Arch Linux or Arch-based** distros:
-```bash
-	sudo pacman -S maven
-```
-If you use **ubuntu/devian-based** distros:
+To run the application just call:
 
 ```bash
-	sudo apt install maven
+     docker-compose up
 ```
-If you use **MacOS** in order to install maven you will have to install [Homebrew](https://brew.sh/)
+## Connect to the Minecraft server
 
-```bash
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-And now you can just install maven with this package manager:
-
-```bash
-	brew install maven
-```
-If you are using **Windows** download maven form the [maven website](http://maven.apache.org/download.cgi). And the follow the
-guide and the advice of the [installation guide](http://maven.apache.org/install.html).
-
-
-
-Now we can check if maven works properly
-
-```bash
-	mvn -version
-```
-
-You should get something like this:
-
-```bash
-	Apache Maven 3.6.3 (NON-CANONICAL_2019-11-27T20:26:29Z_root)
-	Maven home: /opt/maven
-	Java version: 11.0.6, vendor: Oracle Corporation, runtime: /usr/lib/jvm/java-11-openjdk
-	Default locale: es_ES, platform encoding: UTF-8
-	OS name: "linux", version: "5.4.15-arch1-1", arch: "amd64", family: "unix"
-
-```
-## Build
-
-To generate a executable jar you have to use the maven-assembly-plugin:
-
-```bash
-     mvn clean compile assembly:single  
-```
-
-## Run the project
-
-As long the main class is being declare on the main manifest you can just invoke the java command with the -jar option.
-
-```bash
-    java -jar target/minecraft-server-rest-1.0-SNAPSHOT.jar
-```
+The server will use the default port: 25565 so if your are running this in your machine just enter your localhost: 127.0.0.1 and if this is running on a server just enter the server ip.
 
 ## Use the API
 
@@ -115,7 +60,7 @@ the command only if the jwt is a valid one, and the app did not block that comma
 http -f POST localhost:4567/mc commandRequest="{
   "command": 'say hola',
   "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEaWVnbyIsImlhdCI6MTU5ODI4Nzk2MywiZXhwIjoxNTk4ODkyNzYzfQ.nQrUuXb_sZWPiZgLacTlSr4STkG4FqCBvdMRT65drzo"
-}"
+}" 
 ```
 ## Built With
 
@@ -124,6 +69,8 @@ http -f POST localhost:4567/mc commandRequest="{
 * [JJWT](https://github.com/jwtk/jjwt) - The JSON Web Token library for Java and Android.
 * [Gson](https://github.com/google/gson) - The Google's JSON converter.
 * [JUnit](https://junit.org/junit4/) - The unit testing framework.
+* [Docker](https://www.docker.com/) _ The whale of the containers?
+* [Docker-compose](https://docs.docker.com/compose/) - The tool for running multi-container Docker applications.
 
 
 ## Contributing

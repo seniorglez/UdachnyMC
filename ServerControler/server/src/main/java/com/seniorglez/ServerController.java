@@ -20,11 +20,18 @@ import static spark.Spark.*;
  */
 public class ServerController {
     private static SecretKey secretKey;
+    private static ServerController serverController;
+    private static Process mcProcess;
+    private static Thread mcOutput;
+    private static CommandSender commandSender;
+    private static File home = new File(System.getProperty("user.home"));
 
     public static void main(String[] args) throws IOException {
-        ServerController serverController = new ServerController();
-        Process mcProcess = serverController.CreateMinecraftProcess();
-        CommandSender commandSender = new CommandSender(mcProcess);
+        serverController = new ServerController();
+        mcProcess = serverController.createMinecraftProcess(home); 
+        mcOutput = serverController.printMinecraftProcessOutput(mcProcess);
+        mcOutput.start();
+        commandSender = new CommandSender(mcProcess);
         secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
         Gson gson = new Gson();
 
@@ -36,6 +43,7 @@ public class ServerController {
                 boolean commandSenderResponse = commandSender.sendMessage(commandRequest.getCommand());
                 return ( commandSenderResponse ) ? "command executed" : "The command does not exist of has been deactivated";
             }
+            response.status(403);
             return "The token is not valid";
         });
 
@@ -56,17 +64,21 @@ public class ServerController {
         });
     }
 
-    private Process CreateMinecraftProcess() throws IOException {
+    private Process createMinecraftProcess(File home) throws IOException {
         System.out.println("Starting Server!");
         ProcessBuilder mcProcessBuilder = new ProcessBuilder("java", "-Xmx1024M", "-Xms1024M", "-jar", "server.jar", "nogui");
-        mcProcessBuilder.directory(new File("/Users/diego/Developer/Playground/minecraftserver"));
+        mcProcessBuilder.directory(home);
         Process mcProcess = mcProcessBuilder.start();
+        return mcProcess;
+    }
+
+    private Thread printMinecraftProcessOutput(Process mcProcess){
         InputStream serverOutput = mcProcess.getInputStream();
-        new Thread(() -> {
+        Thread printThread = new Thread(() -> {
             Stream<String> lines = new BufferedReader(new InputStreamReader(serverOutput)).lines();
             lines.forEach(l -> System.out.println(l));
-        }).start();
-        return mcProcess;
+        });
+        return printThread;
     }
 
     private Jws<Claims> decodeJWT(String token) {
