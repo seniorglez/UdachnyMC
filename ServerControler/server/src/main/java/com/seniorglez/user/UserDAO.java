@@ -1,15 +1,14 @@
 package com.seniorglez.user;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Arrays;
 import java.util.List;
 
-public class UserDAO { //Eventually this class will access to a MariaDB database through the Hibernate lib.
+public class UserDAO {
 
-    private final List<User> users = Arrays.asList(
-            new User("Marco", "Passw0rd"),
-            new User("ElPanaMiguel", "Passw0rd"),
-            new User("Diego", "Passw0rd")
-    );
     private static UserDAO instance = new UserDAO();
 
     private UserDAO(){};
@@ -19,7 +18,20 @@ public class UserDAO { //Eventually this class will access to a MariaDB database
     }
 
     public User getUserByUsername(String username) {
-        return users.stream().filter(b -> b.getUsername().equals(username)).findFirst().orElse(null);
+        String url = "jdbc:mysql://db?" + "user=root&password=P@ssw0rd";
+        String query = "SELECT * FROM users WHERE username=?";
+        ResultSet resultSet = null;
+        try (Connection connection = DriverManager.getConnection(url);
+            PreparedStatement statement = connection.createStatement()) {
+            statement.setString(1, username);
+            resultSet = statement.executeQuery(query);
+            return (resultSet.next()) ? new User(resultSet.getString("username"),resultSet.getString("password")) : null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            
+            if (resultSet!=null) try{ resultSet.close(); } catch(Exception e){e.printStackTrace();}; //beautiful line <3
+        }
+        return null;
     }
-
 }
