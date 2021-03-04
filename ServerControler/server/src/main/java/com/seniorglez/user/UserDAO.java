@@ -22,7 +22,7 @@ public class UserDAO {
         String query = "SELECT * FROM users WHERE username=?";
         ResultSet resultSet = null;
         try (Connection connection = DriverManager.getConnection(url);
-            PreparedStatement statement = connection.createStatement()) {
+            PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, username);
             resultSet = statement.executeQuery(query);
             return (resultSet.next()) ? new User(resultSet.getString("username"),resultSet.getString("password")) : null;
