@@ -47,8 +47,8 @@ In order to login you will have to post a json as the credentials value to the /
 
 ```bash
  http -f POST localhost:4567/login credentials="{
-  "username": "Diego",
-  "password": "Passw0rd" }"
+  "username": "guest",
+  "password": "guest" }"
 ```
 
 ### Send a command
