@@ -73,6 +73,9 @@ You should get something like this:
 	OS name: "linux", version: "5.4.15-arch1-1", arch: "amd64", family: "unix"
 
 ```
+
+### MySQL
+
 ## Build
 
 To generate a executable jar you have to use the maven-assembly-plugin:
