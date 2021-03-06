@@ -69,7 +69,7 @@ http -f POST localhost:4567/mc commandRequest="{
 * [JJWT](https://github.com/jwtk/jjwt) - The JSON Web Token library for Java and Android.
 * [Gson](https://github.com/google/gson) - The Google's JSON converter.
 * [JUnit](https://junit.org/junit4/) - The unit testing framework.
-* [Docker](https://www.docker.com/) _ The whale of the containers?
+* [Docker](https://www.docker.com/) - The whale of the containers?
 * [Docker-compose](https://docs.docker.com/compose/) - The tool for running multi-container Docker applications.
 
 
