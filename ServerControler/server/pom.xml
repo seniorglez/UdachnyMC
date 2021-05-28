@@ -17,7 +17,22 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/seniorglez/*</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <dependencies>
+    <dependency>
+      <groupId>com.seniorglez.functionalJava</groupId>
+      <artifactId>functional-java</artifactId>
+      <version>1.0.1</version>
+    </dependency>
     <dependency>
       <groupId>com.sparkjava</groupId>
       <artifactId>spark-core</artifactId>

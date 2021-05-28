@@ -82,3 +82,8 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+
+#My own stuff
+
+/ServerControler/settings.xml

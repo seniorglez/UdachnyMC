@@ -14,6 +14,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.stream.Stream;
 import static spark.Spark.*;
+import com.seniorglez.functionalJava.functors.Option;
 
 /**
  * Hello world!
@@ -25,6 +26,7 @@ public class ServerController {
     private static Thread mcOutput;
     private static CommandSender commandSender;
     private static File home = new File(System.getProperty("user.home"));
+    private Option<String> op = new Option<String>("kk");//testing
 
     public static void main(String[] args) throws IOException {
         serverController = new ServerController();
