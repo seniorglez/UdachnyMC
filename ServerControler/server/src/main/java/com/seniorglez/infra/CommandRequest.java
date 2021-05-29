@@ -1,4 +1,4 @@
-package com.seniorglez.model;
+package com.seniorglez.infra;
 
 public class CommandRequest {
 

@@ -1,21 +1,15 @@
-package com.seniorglez.user;
+package com.seniorglez.infra;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Arrays;
-import java.util.List;
 
-public class UserDAO {
+import com.seniorglez.domain.Users;
+import com.seniorglez.domain.model.User;
 
-    private static UserDAO instance = new UserDAO();
+public class UserJDBC  implements Users {
 
-    private UserDAO(){};
-
-    public static UserDAO getInstance() {
-        return instance;
-    }
 
     public User getUserByUsername(String username) {
         String url = "jdbc:mysql://db/myschema"; //Seriously, I don't know why I have to explicitly define the scheme 
