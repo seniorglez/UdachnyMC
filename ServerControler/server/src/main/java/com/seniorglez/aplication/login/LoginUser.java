@@ -4,7 +4,6 @@ package com.seniorglez.aplication.login;
 import com.seniorglez.domain.Users;
 import com.seniorglez.domain.model.User;
 import com.seniorglez.domain.model.UserErrors;
-import com.seniorglez.functionalJava.monads.Option;
 import com.seniorglez.functionalJava.monads.Result;
 
 public class LoginUser {

@@ -20,6 +20,6 @@ public class SendMessage {
         if (commandMessage.getExpiration().after(new Date())) {
             return messages.send(commandMessage.getCommand());
         }
-        return new Result();//expira
+        return new Result.Failure<MessageSuccesses,MessageErrors>(MessageErrors.SESSION_EXPIRED);
     }
 }

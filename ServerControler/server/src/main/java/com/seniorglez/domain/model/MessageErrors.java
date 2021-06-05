@@ -2,5 +2,6 @@ package com.seniorglez.domain.model;
 
 public enum MessageErrors {
     IOEXCEPTION,
-    UNAUTHORIZED
+    UNAUTHORIZED,
+    SESSION_EXPIRED
 }
