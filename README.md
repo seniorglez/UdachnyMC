@@ -4,7 +4,7 @@ A java application which provides a API REST to execute commands on a minecraft 
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. This project is planned to be launched in docker with docker-compose but if you don't want to use docker follow [these instructions](/docks/DockerlessBuild.md).
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. This project is planned to be launched in docker with docker-compose but if you don't want to use docker figure out how to build this without compose until I update [these instructions](/docks/DockerlessBuild.md).
 
 ### Prerequisites
 
@@ -14,7 +14,7 @@ First of all download and store the Minecraft server you want to use in the Serv
 
 ou need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://maven.apache.org/install.html) if you use Windows.
 
-As long as this application uses a library hosted in github packages, you must add the server and repository that follows settings.xml file.
+As long as this application uses a library hosted in github packages, you must add the server that follows to the maven settings.xml.
 
 ```xml
       <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,19 +26,6 @@ As long as this application uses a library hosted in github packages, you must a
           <password>YOUR KEY HERE</password>
         </server>
       </servers>
-<repositories>
-        <repository>
-          <id>central</id>
-          <url>https://repo1.maven.org/maven2</url>
-        </repository>
-        <repository>
-          <id>github</id>
-          <url>https://maven.pkg.github.com/seniorglez/*</url>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-        </repository>
-      </repositories>
     </settings>
 ```
 
@@ -105,11 +92,12 @@ http -f POST localhost:4567/mc commandRequest="{
 * [JUnit](https://junit.org/junit4/) - The unit testing framework.
 * [Docker](https://www.docker.com/) - The whale of the containers?
 * [Docker-compose](https://docs.docker.com/compose/) - The tool for running multi-container Docker applications.
+* [fucntionalJava](https://github.com/seniorglez/functionalJava) - My own functinal java library.
 
 
 ## Contributing
 
-Feel free to fork it and made pull request if you think that your own version is better or adds new functionalities.
+Feel free to fork it and made pull request if you think that your own version is better or adds new functionalities. 
 
 ## Authors
 
