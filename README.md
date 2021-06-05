@@ -10,15 +10,49 @@ These instructions will get you a copy of the project up and running on your loc
 
 First of all download and store the Minecraft server you want to use in the ServerControler directory. You can get one from the [Mojang website](https://www.minecraft.net/en-us/download/server/).
 
+#### Maven
+
+ou need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://maven.apache.org/install.html) if you use Windows.
+
+As long as this application uses a library hosted in github packages, you must add the server and repository that follows settings.xml file.
+
+```xml
+      <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+      <servers>
+        <server>
+          <id>github</id>
+          <username>YOUR GITHUB USERNAME HERE</username>
+          <password>YOUR KEY HERE</password>
+        </server>
+      </servers>
+<repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+          <id>github</id>
+          <url>https://maven.pkg.github.com/seniorglez/*</url>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </settings>
+```
+
 #### Docker 
 
-You only need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://docs.docker.com/get-docker/) if you use Windows. 
+You need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://docs.docker.com/get-docker/) if you use Windows.
 
 #### Docker-compose 
 
 You only need to download docker-compose from the package manager of your distribution or see how to install it [from this link](https://docs.docker.com/compose/install/) if you use MacOS or Windows. 
 
 ### Build it
+
+Execute [get_mv_settings.sh](/get_mv_settings.sh) to allow docker to copy your maven settings for use during the BUILD phase.
 
 To build the docker containers just call:
 

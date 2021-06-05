@@ -1,10 +1,6 @@
-package com.seniorglez.user;
+package com.seniorglez.aplication.login;
 
-/**
- * A model class which represents a user of the service.
- */
-public class User {
-
+public class QueryUser {
     /**
      * A string which represent the the user's username.
      */
@@ -19,7 +15,7 @@ public class User {
      * @param name A string which represent the username of the user.
      * @param password A string which represent the username of the user.
      */
-    public User( String name, String password ) {
+    public QueryUser( String name, String password ) {
         this.username = name;
         this.password = password;
     }
@@ -39,5 +35,4 @@ public class User {
     public String getPassword() {
         return this.password;
     }
-
 }

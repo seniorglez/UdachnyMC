@@ -1,4 +1,4 @@
-package com.seniorglez.model;
+package com.seniorglez.infra;
 
 public class Credentials {
 
@@ -10,20 +10,12 @@ public class Credentials {
         this.password = password;
     }
 
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
