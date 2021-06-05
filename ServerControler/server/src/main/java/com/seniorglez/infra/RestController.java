@@ -7,7 +7,7 @@ import com.seniorglez.aplication.sendMessage.SendMessage;
 import com.seniorglez.domain.model.MessageErrors;
 import com.seniorglez.domain.model.MessageSuccesses;
 import com.seniorglez.domain.model.User;
-import com.seniorglez.functionalJava.monads.Option;
+import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -61,8 +61,8 @@ public class RestController {
             post("/login", (request, response) -> {
                 String json = request.queryParams("credentials");
                 Credentials credentials = gson.fromJson(json, Credentials.class);
-                Option<User> loggedUser = new LoginUser(new UserJDBC()).execute(new QueryUser(credentials.getUsername(),credentials.getPassword()));
-                if(loggedUser.getValue() != null){
+                Result<User, UserErrors> loginResult = new LoginUser(new UserJDBC()).execute(new QueryUser(credentials.getUsername(),credentials.getPassword()));
+                if (loginResult instanceof Result.Success) {
                     response.type("json");
                     String jwt = Jwts.builder()
                             .signWith(secretKey)
@@ -71,8 +71,32 @@ public class RestController {
                             .setExpiration(new Date(System.currentTimeMillis() + 604800000))
                             .compact();
                     return jwt;
+                } else {
+                    switch ((UserErrors)((Result.Failure) loginResult).getError()) {
+                        
+                        case SERVER_ERROR:
+                            response.status(500);
+                            return "SERVER ERROR";
+                        case TIMEOUT:
+                            response.status(503);
+                            return "TIMEOUT";
+                        case NO_RESPONSE:
+                            response.status(503);
+                            return "NO RESPONSE";
+                        case PASSWORD_NULL:
+                            response.status(400);
+                            return "PASSWORD NULL";
+                        case USERNAME_NULL:
+                            response.status(400);
+                            return "USERNAME NULL";
+                        case USER_DOES_NOT_EXIST:
+                            response.status(401);
+                            return "USER DOES NOT EXIST";
+                        default:
+                            response.status(0);
+                            return "UNTRACKED ERROR";
+                    }
                 }
-                return "Sorry, username or password incorrect";
             });
         }
 
