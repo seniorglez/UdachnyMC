@@ -7,7 +7,7 @@ public class CommandMessage {
     private String command;
     private Date expiration;
 
-    public CommandMessage(String command, Date expiration) {
+    public CommandMessage( String command, Date expiration ) {
         this.command = command;
         this.expiration = expiration;
     }

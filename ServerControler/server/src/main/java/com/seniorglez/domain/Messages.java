@@ -5,5 +5,5 @@ import com.seniorglez.domain.model.MessageSuccesses;
 import com.seniorglez.functionalJava.monads.Result;
 
 public interface Messages {
-    public Result<MessageSuccesses, MessageErrors> send(String message);
+    public Result< MessageSuccesses, MessageErrors > send(String message);
 }

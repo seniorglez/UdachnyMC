@@ -28,7 +28,7 @@ public class RestController {
     private final Gson gson;
     private SecretKey secretKey;
 
-    public RestController(Process mcProcess, SendMessage sendMessage) {
+    public RestController( Process mcProcess, SendMessage sendMessage ) {
         this.mcProcess = mcProcess;
         this.sendMessage = sendMessage;
         this.gson = new Gson();
@@ -37,7 +37,7 @@ public class RestController {
 
     public void start() {
 
-            post("/mc", (request, response) -> {
+            post("/mc", ( request, response ) -> {
                 String json = request.queryParams("commandRequest");
                 CommandRequest commandRequest = gson.fromJson(json, CommandRequest.class);
                 Jws<Claims> jws = decodeJWT(commandRequest.getToken());
@@ -46,7 +46,7 @@ public class RestController {
                 if(result instanceof Result.Success){
                     return "Command executed";
                 }
-                switch (((Result.Failure<MessageSuccesses,MessageErrors>)result).getError()){
+                switch ((( Result.Failure< MessageSuccesses, MessageErrors >)result).getError()){
                     case IOEXCEPTION:
                         response.status(500);
                         return "Internal Server Error";
@@ -59,61 +59,61 @@ public class RestController {
             });
 
             post("/login", (request, response) -> {
-                String json = request.queryParams("credentials");
-                Credentials credentials = gson.fromJson(json, Credentials.class);
-                Result<User, UserErrors> loginResult = new LoginUser(new UserJDBC()).execute(new QueryUser(credentials.getUsername(),credentials.getPassword()));
-                if (loginResult instanceof Result.Success) {
+                String json = request.queryParams( "credentials" );
+                Credentials credentials = gson.fromJson( json, Credentials.class );
+                Result<User, UserErrors> loginResult = new LoginUser( new UserJDBC()).execute( new QueryUser(credentials.getUsername(), credentials.getPassword()) );
+                if ( loginResult instanceof Result.Success ) {
                     response.type("json");
                     String jwt = Jwts.builder()
-                            .signWith(secretKey)
-                            .setSubject(credentials.getUsername())
-                            .setIssuedAt(new Date())
-                            .setExpiration(new Date(System.currentTimeMillis() + 604800000))
+                            .signWith( secretKey )
+                            .setSubject( credentials.getUsername() )
+                            .setIssuedAt( new Date() )
+                            .setExpiration( new Date(System.currentTimeMillis() + 604800000 ))
                             .compact();
                     return jwt;
                 } else {
-                    switch ((UserErrors)((Result.Failure) loginResult).getError()) {
+                    switch (( UserErrors )(( Result.Failure )loginResult).getError()) {
                         
                         case SERVER_ERROR:
-                            response.status(500);
+                            response.status( 500 );
                             return "SERVER ERROR";
                         case TIMEOUT:
-                            response.status(503);
+                            response.status( 503 );
                             return "TIMEOUT";
                         case NO_RESPONSE:
-                            response.status(503);
+                            response.status( 503 );
                             return "NO RESPONSE";
                         case PASSWORD_NULL:
-                            response.status(400);
+                            response.status( 400 );
                             return "PASSWORD NULL";
                         case USERNAME_NULL:
-                            response.status(400);
+                            response.status( 400 );
                             return "USERNAME NULL";
                         case USER_DOES_NOT_EXIST:
-                            response.status(401);
+                            response.status( 401 );
                             return "USER DOES NOT EXIST";
                         default:
-                            response.status(0);
+                            response.status( 0 );
                             return "UNTRACKED ERROR";
                     }
                 }
             });
         }
 
-    private Jws<Claims> decodeJWT(String token) {
-        if (token == null || token.isEmpty()) return null;
+    private Jws< Claims > decodeJWT( String token ) {
+        if ( token == null || token.isEmpty() ) return null;
         Jws<Claims> jws;
         jws = Jwts.parserBuilder()
-                .setSigningKey(secretKey)
+                .setSigningKey( secretKey )
                 .build()
                 .parseClaimsJws(token);
         return jws;
     }
 
-    private boolean validateJWT(Jws<Claims> jws) {
-        if (jws == null) return false;
+    private boolean validateJWT( Jws<Claims> jws ) {
+        if ( jws == null ) return false;
         Date expirationDate = jws.getBody().getExpiration();
-        return expirationDate.after(new Date());
+        return expirationDate.after( new Date() );
     }
 
 }
