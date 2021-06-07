@@ -8,6 +8,8 @@ services:
     volumes:
       - .:/code
       - logvolume01:/var/log
+      - ./minecraft-world:/root/world
+      - ./minecraft-logs:/root/logs
     links:
       - db
     depends_on:
@@ -28,3 +30,7 @@ services:
       - 3306:3306
 volumes:
   logvolume01: {}
+  minecraft-world:
+    driver: local
+  minecraft-logs:
+    driver: local

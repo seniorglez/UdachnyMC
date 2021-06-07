@@ -11,7 +11,7 @@ import com.seniorglez.functionalJava.monads.Result;
 
 public class UserJDBC  implements Users {
 
-    public Result<User, UserErrors> getUserByUsername( String username ) {
+    public Result< User, UserErrors > getUserByUsername( String username ) {
         String url = "jdbc:mysql://db/myschema"; //Seriously, I don't know why I have to explicitly define the scheme 
         String query = "SELECT * FROM users WHERE username=?";
         ResultSet resultSet = null;
@@ -26,7 +26,7 @@ public class UserJDBC  implements Users {
         } catch ( SQLException e ) {
             e.printStackTrace();
             return new Result.Failure<User, UserErrors>( UserErrors.SERVER_ERROR );
-        }finally {
+        } finally {
             if ( resultSet!=null ) try {
                  resultSet.close(); 
                 } catch( Exception e ) {

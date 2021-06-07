@@ -1,5 +1,7 @@
 package com.seniorglez;
 
+import com.seniorglez.aplication.sendMessage.SendMessage;
+import com.seniorglez.infra.CommandSender;
 import com.seniorglez.infra.RestController;
 
 import java.io.*;
@@ -11,7 +13,7 @@ public class Start {
     public static void main(String[] args) throws IOException {
         Process mcProcess = createMinecraftProcess(new File(System.getProperty("user.home")));
         printMinecraftProcessOutput(mcProcess);
-        new RestController(mcProcess, null).start();
+        new RestController(mcProcess, new SendMessage(new CommandSender(mcProcess))).start();
     }
 
     private static Process createMinecraftProcess(File home) throws IOException {
