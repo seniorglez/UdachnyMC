@@ -104,7 +104,7 @@ public class RestController {
             });
 
         get("/world", ((request, response) -> {
-            final String filename ="wold";
+            final String filename ="world";
             response.header("Content-disposition", "attachment; filename=" + filename + ".zip;");
             new Zippo().zipDir("/root/"+ filename,"/tmp/" + filename + ".zip");
             File file = new File("/tmp/" + filename + ".zip");
