@@ -1,5 +1,6 @@
 package com.seniorglez.infra;
 
+import com.google.gson.Gson;
 import com.seniorglez.aplication.login.LoginUser;
 import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.sendMessage.CommandMessage;
@@ -11,15 +12,18 @@ import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
-import com.google.gson.Gson;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 import javax.crypto.SecretKey;
+import java.io.File;
+import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.Date;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class RestController {
 
@@ -98,6 +102,17 @@ public class RestController {
                     }
                 }
             });
+
+        get("/world", ((request, response) -> {
+            final String filename ="wold";
+            response.header("Content-disposition", "attachment; filename=" + filename + ".zip;");
+            new Zippo().zipDir("/root/"+ filename,"/tmp/" + filename + ".zip");
+            File file = new File("/tmp/" + filename + ".zip");
+            OutputStream outputStream = response.raw().getOutputStream();
+            outputStream.write(Files.readAllBytes(file.toPath()));
+            outputStream.flush();
+            return response;
+            }));
         }
 
     private Jws< Claims > decodeJWT( String token ) {
