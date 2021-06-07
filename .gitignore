@@ -87,3 +87,5 @@ nb-configuration.xml
 #My own stuff
 
 /ServerControler/settings.xml
+/minecraft-logs
+/minecraft-world
