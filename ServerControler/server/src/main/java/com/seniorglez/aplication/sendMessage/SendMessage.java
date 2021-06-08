@@ -17,9 +17,6 @@ public class SendMessage {
     }
 
     public Result<MessageSuccesses, MessageErrors> execute(CommandMessage commandMessage) {
-        if ( commandMessage.getExpiration().after( new Date() ) ) {
-            return messages.send( commandMessage.getCommand() );
-        }
-        return new Result.Failure< MessageSuccesses, MessageErrors >( MessageErrors.SESSION_EXPIRED );
+        return messages.send( commandMessage.getCommand() );
     }
 }

@@ -7,16 +7,12 @@ public class CommandMessage {
     private String command;
     private Date expiration;
 
-    public CommandMessage( String command, Date expiration ) {
+    public CommandMessage( String command ) {
         this.command = command;
-        this.expiration = expiration;
     }
 
     public String getCommand() {
         return command;
     }
 
-    public Date getExpiration() {
-        return expiration;
-    }
 }
