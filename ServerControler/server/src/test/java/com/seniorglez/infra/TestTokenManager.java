@@ -29,4 +29,10 @@ public class TestTokenManager {
         assertTrue(!tokenManager.validate(""));
     }
 
+    @Test
+    public void testShouldReturnTrue() {
+        String token = tokenManager.getTokenFrom(new QueryUser("Macaulay_Culkin", "HomeAlone1980"));
+        assertTrue(tokenManager.validate(token));
+    }
+
 }

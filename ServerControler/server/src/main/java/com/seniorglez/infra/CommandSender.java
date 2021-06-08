@@ -28,7 +28,7 @@ public class CommandSender implements Messages {
     }
 
     @Override
-    public Result<MessageSuccesses, MessageErrors> send(String message) {// REFACTORIZA ESTO PINCHE PUTO
+    public Result<MessageSuccesses, MessageErrors> send(String message) {
         return Result.get(()->{
             try {
                 String command  = Arrays.stream( message.split(" ") ).findFirst().get();
