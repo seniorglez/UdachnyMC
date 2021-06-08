@@ -28,9 +28,14 @@ public class TokenManager implements Tokens {
     @Override
     public boolean validate(String token) {
         if ( token == null || token.isEmpty()) return false;
-        Jws<Claims> jwt = decodeJWT(token);
-        Date expirationDate = jwt.getBody().getExpiration();
-        return expirationDate.after( new Date() );
+        try {
+            Jws<Claims> jwt = decodeJWT(token);
+            Date expirationDate = jwt.getBody().getExpiration();
+            return expirationDate.after(new Date());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private Jws<Claims> decodeJWT(String token ) {

@@ -6,8 +6,6 @@ import com.seniorglez.domain.model.MessageErrors;
 import com.seniorglez.domain.model.MessageSuccesses;
 import com.seniorglez.functionalJava.monads.Result;
 
-import java.util.Date;
-
 public class SendMessage {
 
     public Messages messages;
