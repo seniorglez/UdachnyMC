@@ -1,8 +1,16 @@
 package com.seniorglez;
 
+import com.seniorglez.aplication.login.Download;
+import com.seniorglez.aplication.login.ScrapServerUrl;
 import com.seniorglez.aplication.sendMessage.SendMessage;
+import com.seniorglez.domain.model.DownloadErrors;
+import com.seniorglez.domain.model.ScrapingErrors;
+import com.seniorglez.functionalJava.monads.Result;
 import com.seniorglez.infra.CommandSender;
+import com.seniorglez.infra.Downloader;
 import com.seniorglez.infra.RestController;
+import com.seniorglez.infra.Scraper;
+
 
 import java.io.*;
 import java.util.stream.Stream;
@@ -11,7 +19,18 @@ import java.util.stream.Stream;
 public class Start {
 
     public static void main(String[] args) throws IOException {
-        Process mcProcess = createMinecraftProcess(new File(System.getProperty("user.home")));
+        String home = System.getProperty("user.home");
+        if(!new File(home+"/server.jar").exists()) {
+            Result<String, ScrapingErrors> res = new ScrapServerUrl(new Scraper()).execute();
+            if(res instanceof Result.Success) {
+                String url = ((Result.Success<String, ScrapingErrors>) res).getValue();
+                Result<File, DownloadErrors> result = new Download(new Downloader()).execute(url,home+"/server.jar");
+                if (result instanceof Result.Failure) return;
+            } else {
+                return;
+            }
+        }
+        Process mcProcess = createMinecraftProcess(new File(home));
         printMinecraftProcessOutput(mcProcess);
         new RestController(mcProcess, new SendMessage(new CommandSender(mcProcess))).start();
     }

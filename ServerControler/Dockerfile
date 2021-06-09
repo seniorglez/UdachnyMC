@@ -10,9 +10,10 @@ RUN mvn -f /home/app/pom.xml clean compile assembly:single
 #
 # Package stage
 #
-FROM openjdk:11-jre-slim
+# This thing works but I should check which one is the most convenient and if there is a jre16 is available
+FROM openjdk:16.0.1-jdk-slim-buster
 COPY --from=build /home/app/target/minecraft-server-rest-1.0.0.jar /usr/local/lib/serverController.jar
-COPY ./server.jar /root/server.jar
+#COPY ./server.jar /root/server.jar
 COPY ./eula.txt /root/eula.txt
 EXPOSE 8080
 EXPOSE 25565
