@@ -1,6 +1,8 @@
 package com.seniorglez.infra;
 
 import com.google.gson.Gson;
+import com.seniorglez.aplication.lifeCicle.RestartApplication;
+import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.login.GenerateToken;
 import com.seniorglez.aplication.login.LoginUser;
 import com.seniorglez.aplication.login.QueryUser;
@@ -88,6 +90,26 @@ public class RestController {
                             response.status( 0 );
                             return "UNTRACKED ERROR";
                     }
+                }
+            });
+
+            post("/update", (request, response) -> {
+                String token = request.queryParams("token");
+                if (new ValidateToken(new TokenManager()).execute(token)) {
+                    new Thread(() -> {
+                        try {
+                            Thread.sleep(10000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        new RestartApplication();
+                    }).start();
+                    new UpdateServer(System.getProperty("user.home")+"/server.jar").execute(); //this is lame
+                    response.status( 200 );
+                    return "Updating...";
+                } else {
+                    response.status(403);
+                    return "The token is not valid";
                 }
             });
 
