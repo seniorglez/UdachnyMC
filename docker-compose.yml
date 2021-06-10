@@ -5,7 +5,12 @@ services:
     ports:
       - "25565:25565" #Default minecraft server port
       - "4567:4567" #Default SparkJava port
-    mem_reservation: 1500M
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.8'
+          memory: 1500M
+    
     volumes:
       - .:/code
       - logvolume01:/var/log
