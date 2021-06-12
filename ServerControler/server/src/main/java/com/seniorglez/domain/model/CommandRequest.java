@@ -1,4 +1,4 @@
-package com.seniorglez.infra;
+package com.seniorglez.domain.model;
 
 public class CommandRequest {
 

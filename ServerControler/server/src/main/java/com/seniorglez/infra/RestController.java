@@ -1,6 +1,7 @@
 package com.seniorglez.infra;
 
 import com.google.gson.Gson;
+import com.seniorglez.aplication.endpoints.post.PostMinecraftCommand;
 import com.seniorglez.aplication.lifeCicle.RestartApplication;
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.login.GenerateToken;
@@ -9,10 +10,7 @@ import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.login.ValidateToken;
 import com.seniorglez.aplication.sendMessage.CommandMessage;
 import com.seniorglez.aplication.sendMessage.SendMessage;
-import com.seniorglez.domain.model.MessageErrors;
-import com.seniorglez.domain.model.MessageSuccesses;
-import com.seniorglez.domain.model.User;
-import com.seniorglez.domain.model.UserErrors;
+import com.seniorglez.domain.model.*;
 import com.seniorglez.functionalJava.monads.Result;
 import java.io.File;
 import java.io.OutputStream;
@@ -38,24 +36,10 @@ public class RestController {
             post("/mc", ( request, response ) -> {
                 String json = request.queryParams("commandRequest");
                 CommandRequest commandRequest = gson.fromJson(json, CommandRequest.class);
-                if (new ValidateToken(new TokenManager()).execute(commandRequest.getToken())) {
-                    CommandMessage cm = new CommandMessage(commandRequest.getCommand());
-                    Result<MessageSuccesses, MessageErrors> result = sendMessage.execute(cm);
-                    if(result instanceof Result.Success) {
-                        response.status(200);
-                        return "Command executed";
-                    }
-                    switch ((( Result.Failure< MessageSuccesses, MessageErrors >)result).getError()) {
-                        case IOEXCEPTION:
-                            response.status(500);
-                            return "Internal Server Error";
-                        case UNAUTHORIZED:
-                            response.status(403);
-                            return "The token is not valid";
-                    }
-                }
-                response.status(403);
-                return "The token is not valid";
+                EndpointResponse res = new PostMinecraftCommand(this.mcProcess).execute(commandRequest);
+                response.status(res.getResponseCode());
+                response.type(res.getResponseType());
+                return res.getResponseBody();
             });
 
             post("/login", (request, response) -> {
@@ -124,5 +108,4 @@ public class RestController {
             return response;
             }));
         }
-
 }
