@@ -58,20 +58,6 @@ To run the application just call:
 
 The server will use the default port: 25565 so if your are running this in your machine just enter your localhost: 127.0.0.1 and if this is running on a server just enter the server ip.
 
-## Use the API
-
-First and foremost I´m using [HTTPie](https://httpie.org/) for these examples.
-
-### login
-
-In order to login you will have to post a json as the credentials value to the /login url. It will return a jwt.
-
-```bash
- http -f POST localhost:4567/login credentials="{
-  "username": "guest",
-  "password": "guest" }"
-```
-
 ### Send a command
 
 In order to send a command you will need to post a json as the commandRequest value to the /mc url. The server will execute 
