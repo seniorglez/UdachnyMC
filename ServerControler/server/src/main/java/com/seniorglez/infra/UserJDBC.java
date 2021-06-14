@@ -12,7 +12,7 @@ import com.seniorglez.functionalJava.monads.Result;
 public class UserJDBC  implements Users {
 
     public Result< User, UserErrors > getUserByUsername( String username ) {
-        String url = "jdbc:mysql://db/myschema"; //Seriously, I don't know why I have to explicitly define the scheme 
+        String url = "jdbc:mysql://localhost:3306/myschema";
         String query = "SELECT * FROM users WHERE username=?";
         ResultSet resultSet = null;
         try (Connection connection = DriverManager.getConnection( url, "root", "P@ssw0rd" );

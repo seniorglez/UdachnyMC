@@ -4,7 +4,6 @@ import com.seniorglez.domain.Messages;
 import com.seniorglez.domain.model.MessageErrors;
 import com.seniorglez.domain.model.MessageSuccesses;
 import com.seniorglez.functionalJava.monads.Result;
-import com.seniorglez.util.PropertiesReader;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -29,7 +28,7 @@ public class CommandSender implements Messages {
 
     @Override
     public Result<MessageSuccesses, MessageErrors> send(String message) {
-        return Result.get(()->{
+        return Result.get(()-> {
             try {
                 String command  = Arrays.stream( message.split(" ") ).findFirst().get();
                 System.out.println( "trying to execute a " + command + " command" );

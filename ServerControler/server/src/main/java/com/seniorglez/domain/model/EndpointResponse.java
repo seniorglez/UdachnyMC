@@ -11,7 +11,7 @@ public class EndpointResponse {
     public EndpointResponse(int responseCode,String responseType,String responseBody) {
         this.responseCode = responseCode;
         this.responseType = responseType;
-        this.responseCode = responseCode;
+        this.responseBody = responseBody;
     }
 
     public int getResponseCode() {

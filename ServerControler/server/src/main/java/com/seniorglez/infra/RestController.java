@@ -1,17 +1,14 @@
 package com.seniorglez.infra;
 
 import com.google.gson.Gson;
+import com.seniorglez.aplication.endpoints.post.PostLogin;
 import com.seniorglez.aplication.endpoints.post.PostMinecraftCommand;
 import com.seniorglez.aplication.lifeCicle.RestartApplication;
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
-import com.seniorglez.aplication.login.GenerateToken;
-import com.seniorglez.aplication.login.LoginUser;
 import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.login.ValidateToken;
-import com.seniorglez.aplication.sendMessage.CommandMessage;
 import com.seniorglez.aplication.sendMessage.SendMessage;
 import com.seniorglez.domain.model.*;
-import com.seniorglez.functionalJava.monads.Result;
 import java.io.File;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -42,40 +39,13 @@ public class RestController {
                 return res.getResponseBody();
             });
 
-            post("/login", (request, response) -> {
-                String json = request.queryParams( "credentials" );
-                QueryUser queryUser = gson.fromJson( json, QueryUser.class);
-                Result<User, UserErrors> loginResult = new LoginUser( new UserJDBC()).execute(queryUser);
-                if ( loginResult instanceof Result.Success ) {
-                    response.type("json");
-                    return new GenerateToken(new TokenManager()).execute(queryUser);
-                } else {
-                    switch (( UserErrors )(( Result.Failure )loginResult).getError()) {
-                        
-                        case SERVER_ERROR:
-                            response.status( 500 );
-                            return "SERVER ERROR";
-                        case TIMEOUT:
-                            response.status( 503 );
-                            return "TIMEOUT";
-                        case NO_RESPONSE:
-                            response.status( 503 );
-                            return "NO RESPONSE";
-                        case PASSWORD_NULL:
-                            response.status( 400 );
-                            return "PASSWORD NULL";
-                        case USERNAME_NULL:
-                            response.status( 400 );
-                            return "USERNAME NULL";
-                        case USER_DOES_NOT_EXIST:
-                            response.status( 401 );
-                            return "USER DOES NOT EXIST";
-                        default:
-                            response.status( 0 );
-                            return "UNTRACKED ERROR";
-                    }
-                }
-            });
+            post("/request_token", ((request, response) -> {
+                QueryUser queryUser = gson.fromJson( request.body(), QueryUser.class);
+                EndpointResponse res = new PostLogin().execute(queryUser);
+                response.status(res.getResponseCode());
+                response.type(res.getResponseType());
+                return res.getResponseBody();
+            }));
 
             post("/update", (request, response) -> {
                 String token = request.queryParams("token");
@@ -107,5 +77,9 @@ public class RestController {
             outputStream.flush();
             return response;
             }));
+
+        get("/hello", ((request, response) -> {
+            return "world";
+        }));
         }
 }

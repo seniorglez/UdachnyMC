@@ -1,4 +1,4 @@
-package com.seniorglez.util;
+package com.seniorglez.infra;
 
 import java.io.IOException;
 import java.io.InputStream;

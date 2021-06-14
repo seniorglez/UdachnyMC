@@ -8,7 +8,6 @@ services:
     deploy:
       resources:
         reservations:
-          cpus: '0.8'
           memory: 1500M
     
     volumes:
