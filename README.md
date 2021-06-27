@@ -1,4 +1,4 @@
-# minecraft-server-REST
+# UdachnyMC
 
 A java application which provides a API REST to execute commands on a minecraft server.
 
