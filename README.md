@@ -8,8 +8,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-First of all download and store the Minecraft server you want to use in the ServerControler directory. You can get one from the [Mojang website](https://www.minecraft.net/en-us/download/server/).
-
 #### Maven
 
 ou need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://maven.apache.org/install.html) if you use Windows.
