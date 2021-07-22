@@ -56,17 +56,6 @@ To run the application just call:
 
 The server will use the default port: 25565 so if your are running this in your machine just enter your localhost: 127.0.0.1 and if this is running on a server just enter the server ip.
 
-### Send a command
-
-In order to send a command you will need to post a json as the commandRequest value to the /mc url. The server will execute 
-the command only if the jwt is a valid one, and the app did not block that command on the commands.properties file.
-
-```bash
-http -f POST localhost:4567/mc commandRequest="{
-  "command": 'say hola',
-  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJEaWVnbyIsImlhdCI6MTU5ODI4Nzk2MywiZXhwIjoxNTk4ODkyNzYzfQ.nQrUuXb_sZWPiZgLacTlSr4STkG4FqCBvdMRT65drzo"
-}" 
-```
 ## Built With
 
 * [Maven](https://maven.apache.org/) - The software project management tool.
