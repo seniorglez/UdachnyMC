@@ -19,6 +19,7 @@ public class UpdateServer {
     }
 
     public boolean execute() {
+        /*
         Result<String, ScrapingErrors> res = new ScrapServerUrl(new Scraper()).execute();
         if(res instanceof Result.Success) {
             String url = ((Result.Success<String, ScrapingErrors>) res).getValue();
@@ -26,5 +27,10 @@ public class UpdateServer {
             return (result instanceof Result.Success);
         }
             return false;
+    }
+    */
+    String url = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar";
+    Result<File, DownloadErrors> result = new Download(new Downloader()).execute(url,serverLocation);
+    return (result instanceof Result.Success);
     }
 }

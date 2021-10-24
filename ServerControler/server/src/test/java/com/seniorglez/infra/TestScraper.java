@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TestScraper {
 
-    final String regex = "(Https:\\/\\/launcher).*?server\\.jar";
+    final String regex = "(https:\\/\\/launcher).*?server\\.jar"; //(https:\/\/launcher).*?server\.jar
 
     @Ignore
     @Test

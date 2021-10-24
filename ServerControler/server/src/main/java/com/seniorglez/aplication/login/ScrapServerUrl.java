@@ -8,7 +8,7 @@ public class ScrapServerUrl {
 
     private final Scrapes scrapes;
 
-    final String regex = "(Https:\\/\\/launcher).*?server\\.jar";
+    final String regex = "(https:\\/\\/launcher).*?server\\.jar";
     final String url = "https://www.minecraft.net/es-es/download/server";
 
     public ScrapServerUrl(Scrapes scrapes) {
