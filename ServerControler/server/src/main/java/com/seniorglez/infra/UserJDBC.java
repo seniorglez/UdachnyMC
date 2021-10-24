@@ -1,8 +1,6 @@
 package com.seniorglez.infra;
 
-
 import java.sql.*;
-
 import com.seniorglez.domain.Users;
 import com.seniorglez.domain.model.User;
 import com.seniorglez.domain.model.UserErrors;

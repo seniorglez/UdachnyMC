@@ -2,7 +2,7 @@
 # Build stage
 #
 FROM maven:3.6.0-jdk-11-slim AS build
-COPY ./settings.xml /root/.m2/settings.xml
+COPY ./server/settings.xml /root/.m2/settings.xml
 COPY ./server/src /home/app/src
 COPY ./server/pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean compile assembly:single

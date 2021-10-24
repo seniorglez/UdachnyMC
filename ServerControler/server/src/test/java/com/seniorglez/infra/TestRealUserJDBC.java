@@ -3,6 +3,8 @@ package com.seniorglez.infra;
 import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;
 import com.seniorglez.domain.model.User;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -15,6 +17,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class TestRealUserJDBC {
 
+    @Ignore
     @Test
     public void testGetDefaultUser() {
         String username = "guest";
