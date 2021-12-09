@@ -33,6 +33,13 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 3306:3306
+  front:
+    profiles:
+      - front
+    build: ./udachny-web
+    ports:
+      - "3000:3000" #NEXT.JS port
+
 volumes:
   logvolume01: {}
   minecraft-world:
