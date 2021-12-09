@@ -9,7 +9,6 @@ export function NavBar() {
                     <li><Link href="/login"><a>LogIn</a></Link></li>
                     <li><a href="https://github.com/seniorglez/UdachnyMC">GitHub</a></li>
                 </ul>
-                
             </nav>
         </header>
     )

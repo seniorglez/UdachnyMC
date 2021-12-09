@@ -75,25 +75,3 @@ body {
   .nav-bar-links li a:hover {
     color: #0088a9
   }
-  
-  header button {
-    margin: 0;
-    padding: 0.7em;
-    background-color: royalblue;
-    border: none;
-    border-radius: 30em;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
-  }
-  
-  header button:hover {
-    opacity: 0.6;
-  }
-  
-  #documents {
-    display: none;
-  }
-  
-  #posts {
-    display: none;
-  }
