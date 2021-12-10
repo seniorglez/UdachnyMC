@@ -1,3 +1,4 @@
+import { FooterArea } from "./footerArea"
 import { NavBar } from "./navBar"
 
 export function Layout({children}) {
@@ -5,6 +6,7 @@ export function Layout({children}) {
         <div>
             <NavBar/>
             {children}
+            <FooterArea/>
         </div>
     )
 }
