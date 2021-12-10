@@ -1,9 +1,45 @@
-export function LoginForm({color="asdas"}) { //, children, ...others
+import { useState } from 'react';
+
+const axios = require('axios');
+
+export function LoginForm({ color = "asdas" }) { //, children, ...others
+
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleClick = (e, user, password) => { //curl: curl -d "{username: 'guest', password: 'guest'}" -X POST http://localhost:4567/request_token
+
+        e.preventDefault();
+        
+        const url = "/api/loginBridge"
+
+        const data = {
+            username: user,
+            password: password
+        }
+
+        const config = {
+            method: 'post',
+            url,
+            data: data,
+            responseType: 'json'
+        }
+        axios(config)
+            .then(function (response) {
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+
+    }
+
     return (
         <form className={"login-form"}>
-            <input type="text" placeholder="User"/>
-            <input type="password" placeholder="Password"/>
-            <input className={"login-form-button"} type="submit" value="login"/>
+            <input id="userfield" type="text" placeholder="User" onChange={(e) => setUsername(e.target.value)} />
+            <input id="passworldfield" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <button className={"login-form-button"} onClick={(e) => handleClick(e, document.getElementById("userfield").value, document.getElementById("passworldfield").value)}>login</button>
         </form>
     )
 }
