@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { isLogged,getToken } from '../lib/user';
 
 const axios = require('axios');
 
@@ -27,7 +28,12 @@ export function LoginForm({ color = "asdas" }) { //, children, ...others
         }
         axios(config)
             .then(function (response) {
-                console.log(response.data)
+                console.log(getToken()) //debug
+                if(isLogged()) {
+                    console.log('Logged')
+                } else {
+                    console.log('F')
+                }
             })
             .catch(function (error) {
                 console.log(error)
