@@ -19,8 +19,13 @@ export default async function handler(req, res) {
 
   const cookies = new Cookies(req, res)
 
+  const eDate = new Date();
+  eDate.setTime(eDate.getTime() + (5 * 24 * 60 * 60 * 1000)) //5 dias
+
   cookies.set('jwt',token,{
-    httpOnly: true // true by default
+    httpOnly: false, // true by default
+    expires: eDate,
+    sameSite: true
   })
   
   res.send(response.status == 200)
