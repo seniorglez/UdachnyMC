@@ -31,8 +31,7 @@ public class RestController {
     public void start() {
 
             post("/mc", ( request, response ) -> {
-                String json = request.queryParams("commandRequest");
-                CommandRequest commandRequest = gson.fromJson(json, CommandRequest.class);
+                CommandRequest commandRequest = gson.fromJson(request.body(), CommandRequest.class);
                 EndpointResponse res = new PostMinecraftCommand(this.mcProcess).execute(commandRequest);
                 response.status(res.getResponseCode());
                 response.type(res.getResponseType());
