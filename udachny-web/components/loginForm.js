@@ -10,10 +10,10 @@ export function LoginForm({ color = "asdas" }) { //, children, ...others
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    //const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter()
-
-    if(isLoggedIn) router.push('/profile')
+    
+    if(isLogged()) router.push('/profile')
 
     const handleClick = (e, user, password) => { //curl: curl -d "{username: 'guest', password: 'guest'}" -X POST http://localhost:4567/request_token
 
@@ -37,7 +37,7 @@ export function LoginForm({ color = "asdas" }) { //, children, ...others
         axios(config)
             .then(function (response) {
                 if (isLogged()) {
-                    setIsLoggedIn(true)
+                    if(isLogged) router.push('/profile') //maybe this could be improved
                 } else {
                     console.log('F')
                 }
