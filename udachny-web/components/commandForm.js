@@ -40,7 +40,7 @@ export function CommandForm() { //curl -d "{command: 'say hola', token: 'eyJhbGc
     return (
         <form className={"login-form"}>
             <input id="command" type="text" placeholder="Command" onChange={(e) => setCommand(e.target.value)} />
-            <button className={"login-form-button"} onClick={(e) => handleClick(e, minecraftCommand)}>login</button>
+            <button className={"login-form-button"} onClick={(e) => handleClick(e, minecraftCommand)}>sent command</button>
         </form>
     )
 }

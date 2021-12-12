@@ -2,6 +2,8 @@
 
 A java application which provides a API REST to execute commands on a minecraft server.
 
+DISCLAIMER: The front is an MVP that is not safe or pretty and will probably have a few functional bugs.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
