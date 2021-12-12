@@ -2,15 +2,13 @@
 
 A java application which provides a API REST to execute commands on a minecraft server.
 
+DISCLAIMER: The front is an MVP that is not safe or pretty and will probably have a few functional bugs.
+
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. This project is planned to be launched in docker with docker-compose but if you don't want to use docker figure out how to build this without compose until I update [these instructions](/docks/DockerlessBuild.md).
+These instructions will get you a copy of the project up and running on your local machine.
 
 ### Prerequisites
-
-#### Maven
-
-ou need to download docker from the package manager of your distribution, from brew if you use MacOS or [from here](https://maven.apache.org/install.html) if you use Windows.
 
 #### Docker 
 
@@ -30,11 +28,18 @@ To build the docker containers just call:
 
 ### Run it 
 
-To run the application just call:
+To run just the API call:
 
 ```bash
      docker-compose up
 ```
+
+To run the API with the front call:
+
+```bash
+     docker-compose --profile front up
+```
+
 ## Connect to the Minecraft server
 
 The server will use the default port: 25565 so if your are running this in your machine just enter your localhost: 127.0.0.1 and if this is running on a server just enter the server ip.
