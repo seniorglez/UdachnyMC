@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { getToken } from '../lib/user';
+import { getToken, deleteToken, isLogged } from '../lib/user';
+import { useRouter } from 'next/router'
 
 const axios = require('axios');
 
@@ -7,10 +8,13 @@ export function CommandForm() { //curl -d "{command: 'say hola', token: 'eyJhbGc
 
 
     const [minecraftCommand, setCommand] = useState("");
+    const router = useRouter()
 
     const handleClick = (e, command) => { //curl: curl -d "{c: 'guest', password: 'guest'}" -X POST http://localhost:4567/request_token
 
         e.preventDefault();
+
+        if (!isLogged) router.push('/login')
 
         const url = "/api/commandBridge"
 
@@ -30,10 +34,12 @@ export function CommandForm() { //curl -d "{command: 'say hola', token: 'eyJhbGc
 
         axios(config)
             .then(function (response) {
-               console.log('Ok')
+                console.log('OK')
             })
-            .catch(function (error) {
-                console.log(error)
+            .catch(function (error) { //When I try to access the status, it returns an undefined, so I'm going to assume that it is a 4 ** error and delete the token.
+                console.log('deleting token')
+                deleteToken()
+                router.push('/login')
             })
     }
 

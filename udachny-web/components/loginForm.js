@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { isLogged, getToken } from '../lib/user';
+import { isLogged } from '../lib/user';
 import { useRouter } from 'next/router'
 
 //https://www.telerik.com/blogs/programmatically-navigate-with-react-router
