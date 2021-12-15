@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { isLogged } from '../lib/user';
 import { useRouter } from 'next/router'
 
-//https://www.telerik.com/blogs/programmatically-navigate-with-react-router
-
 const axios = require('axios');
 
 export function LoginForm({ color = "asdas" }) { //, children, ...others
