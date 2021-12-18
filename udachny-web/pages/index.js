@@ -1,4 +1,8 @@
 import Head from 'next/head'
+import { Canvas } from '@react-three/fiber'
+import { Environment, OrbitControls, useFrame } from "@react-three/drei";
+import { Suspense } from 'react'
+import Model from '../components/Model'
 
 export default function Home() {
   return (
@@ -16,12 +20,20 @@ export default function Home() {
         <p className="description">
           A simple Minecraft Server manager
         </p>
-        
+     <div className="main-canvas-wrapper">
+        <Canvas >
+                <Suspense fallback={null}>
+                    <Model position={[0, 0, 0]} rotation={[0.3, 0.75, 0]}/>
+                    <Environment preset="sunset" background={false} />
+                </Suspense>
+        </Canvas>
+      </div>
       </main>
 
       
 
       <style jsx>{`
+
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
