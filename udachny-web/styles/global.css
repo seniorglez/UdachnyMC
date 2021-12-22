@@ -83,8 +83,28 @@ body {
   width: 900px;
 }
 
-/*header*/
-.nav-bar {
+/*login bar*/
+.login-bar {
+  background-color: black;
+  position: fixed;
+  top: 0px;
+  height: 20px;
+  left: 0;
+  right: 0;
+}
+
+.login-bar-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+/*main-nav-bar*/
+.main-nav-bar {
     box-sizing: border-box;
     margin: 0;
     padding: 0em 2em;
@@ -95,12 +115,12 @@ body {
     align-items: center;
     width: 100%;
     min-height: 4rem;
-    top: 0;
     position: fixed;
     display: flex;
+    top: 20px;
   }
   
-  .nav-bar > li, a{
+  .main-nav-bar > li, a{
     font-family: sans-serif;
     font-weight: 500;
     font-size: 1rem;
@@ -108,22 +128,22 @@ body {
     text-decoration: none;
   }
   
-  .nav-bar-links {
+  .main-nav-bar-links {
     list-style: none;
   }
   
-  .nav-bar-links li {
+  .main-nav-bar-links li {
     display: inline-block;
     padding: 1.5em;
     padding-bottom: 0;
     padding-top: 0;
   }
   
-  .nav-bar-links li a {
+  .main-nav-bar-links li a {
     transition: all 0.3s ease 0s;
   }
   
-  .nav-bar-links li a:hover {
+  .main-nav-bar-links li a:hover {
     color: #2e1919
   }
 
