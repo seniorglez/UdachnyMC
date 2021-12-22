@@ -63,6 +63,25 @@ body {
     justify-content: center;
     height: 100vh;
 }
+/*Command form*/
+.command-form {
+  display: flex;
+  flex-flow: row;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: green;
+  align-items: center;
+
+}
+
+.command-form > button {
+  width: 100px;
+}
+
+.command-form > input {
+  width: 900px;
+}
 
 /*header*/
 .nav-bar {
