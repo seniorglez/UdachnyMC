@@ -64,7 +64,12 @@ Feel free to fork it and made pull request if you think that your own version is
 
 * **Diego Dominguez**   <a href="https://twitter.com/DGlez1111" target="_blank">
     <img alt="Twitter: DGlez1111" src="https://img.shields.io/twitter/follow/DGlez1111.svg?style=social" />
-  </a>
+  </a> - Programmer
+  
+* **Adrian Velasco**   <a href="https://twitter.com/yelsiadri" target="_blank">
+    <img alt="Twitter: yelsiadri" src="https://img.shields.io/twitter/follow/yelsiadri.svg?style=social" />
+  </a> - 3D Technical Artist
+
 
 ## License
 
