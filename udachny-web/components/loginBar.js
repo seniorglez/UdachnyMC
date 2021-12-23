@@ -4,7 +4,9 @@ export function LoginBar({children}) {
     return (
         <div className={'login-bar'}>
             <div className={'login-bar-container'}>
-                <Link href="/login">LOG IN</Link>
+                <div className={'login-bar-element'}>
+                    <Link href="/login">LOGIN</Link>
+                </div>
             </div>
         </div>
     )

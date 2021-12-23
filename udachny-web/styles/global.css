@@ -94,13 +94,16 @@ body {
 }
 
 .login-bar-container {
-  width: 100%;
+  width: 90%;
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
   margin-top: 2px;
   margin-left: 2px;
+}
+
+
+.login-bar-element  {
+  float: inline-end;
 }
 
 /*main-nav-bar*/
