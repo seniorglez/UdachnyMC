@@ -35,6 +35,7 @@ export function CommandForm() { //curl -d "{command: 'say hola', token: 'eyJhbGc
         axios(config)
             .then(function (response) {
                 console.log('OK')
+                document.getElementById("command").value = "";
             })
             .catch(function (error) { //When I try to access the status, it returns an undefined, so I'm going to assume that it is a 4 ** error and delete the token.
                 console.log('deleting token')
