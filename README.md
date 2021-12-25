@@ -73,7 +73,7 @@ Feel free to fork it and made pull request if you think that your own version is
 
 ## License
 
-### minecraft-server-REST
+### UdachnyMC
 
 Copyright (C) 2020 Diego Dominguez Gonzalez
 
@@ -86,6 +86,6 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 Lesser General Public License for more details.
 
 You should have received a copy of the GNU General Public
-License along with this library, if not check it [here](https://www.gnu.org/licenses/gpl-3.0.txt) 
+License along with this program, if not check it [here](https://www.gnu.org/licenses/gpl-3.0.txt) 
 
 ![lgpl3](https://www.gnu.org/graphics/gplv3-or-later.png)
