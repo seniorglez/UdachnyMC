@@ -24,4 +24,4 @@ Now start the front application in development mode with npm:
      npm run dev
 ```
 
-This should open your application at http: // localhost: 3000 / Now every time you make a change to the code the page will automatically refresh so you can see your changes.
+This should open your application at http://localhost:3000/ Now every time you make a change to the code the page will automatically refresh so you can see your changes.

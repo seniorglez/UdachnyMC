@@ -1,3 +1,3 @@
 # DOCS
 
-* [Dev guide](/DevGuide.md)
+* [Dev guide](/DevGuide/README.md)
