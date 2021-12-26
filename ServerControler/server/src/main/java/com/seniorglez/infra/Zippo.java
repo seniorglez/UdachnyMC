@@ -7,16 +7,25 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class Zippo {
+import com.seniorglez.domain.Zippable;
 
-    public void zipDir(String targetDir, String outputFilePath) throws IOException {
-        FileOutputStream fos = new FileOutputStream(outputFilePath);
-        ZipOutputStream zipOut = new ZipOutputStream(fos);
-        File fileToZip = new File(targetDir);
+public class Zippo implements Zippable {
 
-        zipFile(fileToZip, fileToZip.getName(), zipOut);
-        zipOut.close();
-        fos.close();
+    @Override
+    public boolean zipDir(String targetDir, String outputFilePath) {
+        try { // pls refactor me to look like java 9
+            FileOutputStream fos = new FileOutputStream(outputFilePath);
+            ZipOutputStream zipOut = new ZipOutputStream(fos);
+            File fileToZip = new File(targetDir);
+    
+            zipFile(fileToZip, fileToZip.getName(), zipOut);
+            zipOut.close();
+            fos.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
