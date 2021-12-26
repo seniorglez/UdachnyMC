@@ -4,6 +4,10 @@ import Cookies from "cookies"
 
 export default async function handler(req, res) {
 
+  if (!req.method === 'POST') {
+    res.status(405).send('Method Not Allowed')
+  }
+
   const url = "http://localhost:4567/request_token"
 
   const config = {
@@ -28,5 +32,5 @@ export default async function handler(req, res) {
     sameSite: true
   })
   
-  res.send(response.status == 200)
+  res.status(response.status).send(response.status == 200)
 }

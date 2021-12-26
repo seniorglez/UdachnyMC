@@ -6,13 +6,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@react-three/drei": "^8.3.1",
     "axios": "^0.24.0",
     "cookie-cutter": "^0.2.0",
     "cookies": "^0.8.0",
     "next": "latest",
+    "normalize.css": "^8.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router": "^6.1.0",
-    "react-router-dom": "^6.1.0"
+    "react-router-dom": "^6.1.0",
+    "react-three-fiber": "^6.0.13",
+    "swr": "^1.1.1",
+    "three": "^0.135.0"
   }
 }

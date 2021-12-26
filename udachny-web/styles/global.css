@@ -2,6 +2,40 @@ body {
   background-color: whitesmoke;
 }
 
+/*Title*/
+
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+
+}
+
+/* webkit text stroke have some problems with the font*/
+.title,
+.description {
+  text-align: center;
+  color: black;
+  text-shadow: 2px 0 white, -2px 0 wheat, 0 2px white, 0 -2px white, 1px 1px white, -1px -1px white, -1px 1px white, 1px -1px white; 
+}
+
+.description {
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+/*login*/
 .login-form {
     display: flex;
     flex-flow: column;
@@ -29,9 +63,51 @@ body {
     justify-content: center;
     height: 100vh;
 }
+/*Command form*/
+.command-form {
+  display: flex;
+  flex-flow: row;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: green;
+  align-items: center;
 
-/*header*/
-.nav-bar {
+}
+
+.command-form > button {
+  width: 100px;
+}
+
+.command-form > input {
+  width: 900px;
+}
+
+/*login bar*/
+.login-bar {
+  background-color: black;
+  position: fixed;
+  top: 0px;
+  height: 20px;
+  left: 0;
+  right: 0;
+}
+
+.login-bar-container {
+  width: 90%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+
+.login-bar-element  {
+  float: inline-end;
+}
+
+/*main-nav-bar*/
+.main-nav-bar {
     box-sizing: border-box;
     margin: 0;
     padding: 0em 2em;
@@ -42,12 +118,12 @@ body {
     align-items: center;
     width: 100%;
     min-height: 4rem;
-    top: 0;
     position: fixed;
     display: flex;
+    top: 20px;
   }
   
-  .nav-bar > li, a{
+  .main-nav-bar > li, a{
     font-family: sans-serif;
     font-weight: 500;
     font-size: 1rem;
@@ -55,42 +131,171 @@ body {
     text-decoration: none;
   }
   
-  .nav-bar-links {
+  .main-nav-bar-links {
     list-style: none;
   }
   
-  .nav-bar-links li {
+  .main-nav-bar-links li {
     display: inline-block;
     padding: 1.5em;
     padding-bottom: 0;
     padding-top: 0;
   }
   
-  .nav-bar-links li a {
+  .main-nav-bar-links li a {
     transition: all 0.3s ease 0s;
   }
   
-  .nav-bar-links li a:hover {
+  .main-nav-bar-links li a:hover {
     color: #2e1919
   }
 
-  .footer-area {
-    width: 100%;
-    height: 100px;
-    border-top: 1px solid #eaeaea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  /*footer*/
 
-  .footer-area img {
-    margin-left: 0.5rem;
-  }
-
-  .footer-area a {
+  .footer-area  {
     display: flex;
-    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-flow: row wrap;
+    padding: 0px 30px 0px 30px;
+    color: #2f2f2f;
+    background-color: #fff;
+    border-top: 1px solid #e5e5e5;
+  }
+  
+  .footer-area > * {
+    flex:  1 100%;
+  }
+  
+  .footer-addr {
+    margin-right: 1.25em;
+  }
+  
+  .footer-logo {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-size: 1.5rem;
+  }
+  
+  .footer-addr h2 {
+    margin-top: 1.3em;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .nav-title {
+    font-weight: 400;
+    font-size: 15px;
+  }
+  
+  .footer address {
+    font-style: normal;
+    color: #999;
+  }
+  
+  .footer-btn {
+    display: flex;
     align-items: center;
-    color: inherit;
+    justify-content: center;
+    height: 36px;
+    max-width: max-content;
+    background-color: rgb(33, 33, 33, 0.07);
+    border-radius: 100px;
+    color: #2f2f2f;
+    line-height: 0;
+    margin: 0.6em 0;
+    font-size: 1rem;
+    padding: 0 1.3em;
+  }
+  
+  .footer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .footer li {
+    line-height: 2em;
+  }
+  
+  .footer a {
     text-decoration: none;
+  }
+  
+  .footer-nav {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  .footer-nav > * {
+    flex: 1 50%;
+    margin-right: 1.25em;
+  }
+  
+  .nav-ul a {
+    color: #999;
+  }
+  
+  .nav-ul--extra {
+    column-count: 2;
+    column-gap: 1.25em;
+  }
+  
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    color: #999;
+  }
+    
+  .legal-links {
+    display: flex;
+    align-items: center;
+  }
+  
+  .heart {
+    color: #2f2f2f;
+  }
+  
+  @media screen and (min-width: 24.375em) {
+    .legal .legal-links {
+      margin-left: auto;
+    }
+  }
+  
+  @media screen and (min-width: 40.375em) {
+    .footer-nav > * {
+      flex: 1;
+    }
+    
+    .nav-item--extra {
+      flex-grow: 2;
+    }
+    
+    .footer-addr {
+      flex: 1 0px;
+    }
+    
+    .footer-nav {
+      flex: 2 0px;
+    }
+
+    .canvas-wrapper {
+      width: 500px;
+      height: 500px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+    .main-canvas-wrapper {
+      height: 500px;
+      width: 500px;
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      transform: translatey(-60%); /* I ask forgiveness of my sins and the sins of all contributors */
+    }
   }
