@@ -95,9 +95,5 @@ public class RestController {
             outputStream.flush();
             return response;
         }));
-
-        get("/hello", ((request, response) -> {
-            return "world";
-        }));
     }
 }
