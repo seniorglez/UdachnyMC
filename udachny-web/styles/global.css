@@ -4,7 +4,6 @@ body {
 
 /*Title*/
 
-
 .title a {
   color: #0070f3;
   text-decoration: none;
@@ -20,7 +19,6 @@ body {
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
-
 }
 
 /* webkit text stroke have some problems with the font*/
@@ -35,6 +33,7 @@ body {
   line-height: 1.5;
   font-size: 1.5rem;
 }
+
 /*login*/
 .login-form {
     display: flex;
@@ -68,20 +67,21 @@ body {
   display: grid; 
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 25px;
+  grid-gap: 15px;
   padding: 10px;
   border-radius: 8px;
   background-color: green;
-  width: 40%;
+  width: 450px;
 }
 
 .command-form-area {
   background-color: whitesmoke;
-  height: 300px;
+  height: 400px;
   grid-row-start: 1;
   grid-column-start: 1;
   grid-row-end: 8;
   grid-column-end: 13;
+  padding: 15px;
 }
 
 .command-form-text {
@@ -123,7 +123,7 @@ body {
 }
 
 
-.login-bar-element  {
+.login-bar-element {
   float: inline-end;
 }
 
@@ -144,7 +144,7 @@ body {
     top: 20px;
   }
   
-  .main-nav-bar > li, a{
+  .main-nav-bar > li, a {
     font-family: sans-serif;
     font-weight: 500;
     font-size: 1rem;
@@ -169,6 +169,34 @@ body {
   
   .main-nav-bar-links li a:hover {
     color: #2e1919
+  }
+
+  /*latteral menu*/
+
+  .lateral-menu {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background-color: rgb(46, 221, 90);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 85px;
+  }
+  
+  .lateral-menu div {
+    padding: 8px 8px 8px 32px;
+    font-size: 25px;
+    color: #ececec;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .lateral-menu div:hover {
+    background-color: #0d7228;
+    color: #000;
   }
 
   /*footer*/
