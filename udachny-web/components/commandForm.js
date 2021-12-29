@@ -52,9 +52,10 @@ export function CommandForm() { //curl -d "{command: 'say hola', token: 'eyJhbGc
     }
 
     return (
-        <form className={"command-form"}>
-            <input id="command" type="text" placeholder="Command" onChange={(e) => setCommand(e.target.value)} />
-            <button className={"login-form-button"} onClick={(e) => handleClick(e, minecraftCommand)}>send</button>
+        <form className={"command-form"}> 
+            <div className={"command-form-area"}>Loading ...</div>
+            <input id="command" className={"command-form-text"} type="text" placeholder="Command" onChange={(e) => setCommand(e.target.value)} />
+            <button className={"comand-form-button"} onClick={(e) => handleClick(e, minecraftCommand)}>send</button>
         </form>
     )
 }

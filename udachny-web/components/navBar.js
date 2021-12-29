@@ -3,7 +3,7 @@ import { LoginBar } from "./loginBar"
 
 export function NavBar() {
   return (
-    <header class="main-nav-wrapper">
+    <header className="main-nav-wrapper">
       <LoginBar />
 
       <nav className="main-nav-bar">
