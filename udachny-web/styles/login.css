@@ -1,0 +1,26 @@
+
+
+
+/* LOGIN PART CSS*/
+
+/*login*/
+.login-form {
+  display: flex;
+  flex-flow: column;
+  gap: 12px;
+  max-width: 50%;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: green;
+  align-items: center;
+  max-width: 400px;
+}
+
+.login-form > input,
+button {
+  width: 95%;
+}
+
+.login-form-button {
+  background-color: greenyellow;
+}
