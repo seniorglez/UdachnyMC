@@ -1,0 +1,44 @@
+
+/* COMMAND FORM PART CSS */
+
+/*Command form   probably this way to use the grid is not even correct*/
+.command-form {
+  display: grid; 
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: green;
+  align-items: center;
+}
+
+.command-form-area {
+  background-color: whitesmoke;
+  height: 400px;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-row-end: 8;
+  grid-column-end: 13;
+  padding: 15px;
+}
+
+.command-form-text {
+  grid-row-start: 8;
+  grid-column-start: 1;
+  grid-row-end: 8;
+  grid-column-end: 11;
+  width: 100%;
+}
+
+.comand-form-button {
+  grid-row-start: 8;
+  grid-column-start: 11;
+  grid-row-end: 8;
+  grid-column-end: 13;
+  width: 100%;
+}
+
+.command-form-text, .comand-form-button {
+  max-height: 20px;
+}

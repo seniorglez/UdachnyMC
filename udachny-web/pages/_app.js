@@ -1,7 +1,11 @@
 // import App from 'next/app'
 import { Layout } from "../components/layout"
 import "../styles/global.css"
-import "../node_modules/normalize.css/normalize.css"
+import "../styles/command_form.css" //Command Form CSS
+import "../styles/footer.css" //Footer CSS
+import "../styles/login.css" //Login CSS
+import "../styles/media_querys.css" //Media Querys CSS
+import "../node_modules/normalize.css/normalize.css" //Normalize CSS
 
 function MyApp({ Component, pageProps }) {
     return (<Layout>
