@@ -1,6 +1,7 @@
 package com.seniorglez.infra;
 
 import com.google.gson.Gson;
+import com.seniorglez.aplication.endpoints.post.PostGetJSON;
 import com.seniorglez.aplication.endpoints.post.PostLogin;
 import com.seniorglez.aplication.endpoints.post.PostLogs;
 import com.seniorglez.aplication.endpoints.post.PostMinecraftCommand;
@@ -104,8 +105,11 @@ public class RestController extends RestPort {
     @Override
     protected void mapPostGetServerJSON() {
         post("/get_json", (request, response) -> {
-            return "";
-            
+            JSONRequest jsonRequest = gson.fromJson(request.body(), JSONRequest.class);
+            EndpointResponse res = new PostGetJSON(new FileReaderImpl()).execute( jsonRequest.getToken(), jsonRequest.getFileName());
+            response.status(res.getResponseCode());
+            response.type(res.getResponseType());
+            return res.getResponseBody();
         });
         
     }

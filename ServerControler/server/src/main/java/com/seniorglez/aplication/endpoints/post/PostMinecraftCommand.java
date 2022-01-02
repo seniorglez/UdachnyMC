@@ -3,11 +3,11 @@ package com.seniorglez.aplication.endpoints.post;
 import com.seniorglez.aplication.login.ValidateToken;
 import com.seniorglez.aplication.sendMessage.CommandMessage;
 import com.seniorglez.aplication.sendMessage.SendMessage;
-import com.seniorglez.domain.model.CommandRequest;
 import com.seniorglez.domain.model.EndpointResponse;
 import com.seniorglez.domain.model.MessageErrors;
 import com.seniorglez.domain.model.MessageSuccesses;
 import com.seniorglez.functionalJava.monads.Result;
+import com.seniorglez.infra.CommandRequest;
 import com.seniorglez.infra.CommandSender;
 import com.seniorglez.infra.TokenManager;
 
