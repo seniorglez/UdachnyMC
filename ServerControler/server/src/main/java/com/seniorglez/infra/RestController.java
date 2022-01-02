@@ -58,7 +58,7 @@ public class RestController {
                     }
                     new RestartApplication();
                 }).start();
-                new UpdateServer(System.getProperty("user.home") + "/server.jar").execute(); // this is lame
+                new UpdateServer(System.getProperty("user.home") + "minecraft-server/server.jar").execute(); // this is lame
                 response.status(200);
                 return "Updating...";
             } else {
