@@ -11,10 +11,11 @@ services:
           memory: 1500M
     
     volumes:
-      - .:/code
-      - logvolume01:/var/log
-      - ./minecraft-world:/root/world
-      - ./minecraft-logs:/root/logs
+      #- .:/code
+      #- logvolume01:/var/log
+      #- ./minecraft-world:/root/world
+      #- ./minecraft-logs:/root/logs
+      - ./server:/root/minecraft-server
     links:
       - db
     depends_on:

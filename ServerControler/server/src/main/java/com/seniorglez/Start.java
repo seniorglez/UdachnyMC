@@ -7,15 +7,15 @@ import com.seniorglez.infra.RestController;
 import java.io.*;
 import java.util.stream.Stream;
 
-
 public class Start {
 
     public static void main(String[] args) throws IOException {
         String home = System.getProperty("user.home");
-        if(!new File(home+"/server.jar").exists()) {
-            if(!new UpdateServer(home+"/server.jar").execute()) return;
+        if (!new File(home + "/minecraft-server/server.jar").exists()) {
+            if (!new UpdateServer(home + "/minecraft-server/server.jar").execute())
+                return;
         }
-        Process mcProcess = createMinecraftProcess(new File(home));
+        Process mcProcess = createMinecraftProcess(new File(home + "/minecraft-server"));
         printMinecraftProcessOutput(mcProcess);
         new RestController(mcProcess, new SendMessage(new CommandSender(mcProcess))).start();
     }
