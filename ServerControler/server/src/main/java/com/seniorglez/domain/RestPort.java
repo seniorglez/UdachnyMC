@@ -18,6 +18,8 @@ public abstract class RestPort {
 
     protected abstract void mapPostGetLogsEndpoint();
 
+    protected abstract void mapPostGetServerJSON();
+
     protected abstract void mapGetWorldEndpoint();
     
 }

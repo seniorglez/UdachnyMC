@@ -1,6 +1,7 @@
 package com.seniorglez.infra;
 
 import com.google.gson.Gson;
+import com.seniorglez.aplication.endpoints.post.PostGetJSON;
 import com.seniorglez.aplication.endpoints.post.PostLogin;
 import com.seniorglez.aplication.endpoints.post.PostLogs;
 import com.seniorglez.aplication.endpoints.post.PostMinecraftCommand;
@@ -18,7 +19,7 @@ import java.nio.file.Files;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
-public class RestController extends RestPort {
+public class RestController extends RestPort { 
 
     private final Process mcProcess;
     private final SendMessage sendMessage;
@@ -98,6 +99,19 @@ public class RestController extends RestPort {
             return res.getResponseBody();
         });
 
+    }
+
+
+    @Override
+    protected void mapPostGetServerJSON() {
+        post("/get_json", (request, response) -> {
+            JSONRequest jsonRequest = gson.fromJson(request.body(), JSONRequest.class);
+            EndpointResponse res = new PostGetJSON(new FileReaderImpl()).execute( jsonRequest.getToken(), jsonRequest.getFileName());
+            response.status(res.getResponseCode());
+            response.type(res.getResponseType());
+            return res.getResponseBody();
+        });
+        
     }
 
     @Override
