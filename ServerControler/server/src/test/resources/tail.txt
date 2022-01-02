@@ -1,0 +1,133 @@
+1
+Iker Casillas
+20-May-1981
+1.84 m
+Real Madrid (ESP)
+12
+Victor Valdes
+14-Ene-1982
+1.83 m
+Barcelona (ESP)
+23
+Pepe Reina
+31-Ago-1982
+1.87 m
+Liverpool (ENG)
+Defensores
+Camiseta
+Jugador
+Nació
+Altura
+Club
+2
+Raul Albiol
+04-Sep-1985
+1.87 m
+Real Madrid (ESP)
+3
+Gerard Piqué
+02-Feb-1987
+1.92 m
+Barcelona (ESP)
+4
+Carlos Marchena
+31-Jul-1979
+1.82 m
+Valencia (ESP)
+5
+Carles Puyol
+13-Apr-1978
+1.78 m
+Barcelona (ESP)
+11
+Joan Capdevila
+03-Feb-1978
+1.82 m
+Villarreal (ESP)
+15
+Sergio Ramos
+30-Mar-1986
+1.84 m
+Real Madrid (ESP)
+17
+Alvaro Arbeloa
+17-Ene-1983
+1.84 m
+Real Madrid (ESP)
+Mediocampistas
+Camiseta
+Jugador
+Nació
+Altura
+Club
+6
+Andrés Iniesta
+11-May-1984
+1.70 m
+Barcelona (ESP)
+8
+Xavi
+25-Ene-1980
+1.70 m
+Barcelona (ESP)
+10
+Cesc Fabregas
+04-May-1987
+1.75 m
+Arsenal (ENG)
+14
+Xabi Alonso
+25-Nov-1981
+1.83 m
+Real Madrid (ESP)
+16
+Sergio Busquets
+16-Jul-1988
+1.89 m
+Barcelona (ESP)
+20
+Javi Martinez
+02-Sep-1988
+1.90 m
+Athletic Bilbao (ESP)
+21
+David Silva
+08-Ene-1986
+1.77 m
+Valencia (ESP)
+Delanteros
+Camiseta
+Jugador
+Nació
+Altura
+Club
+7
+David Villa
+03-Dic-1981
+1.75 m
+Valencia (ESP)
+9
+Fernando Torres
+20-Mar-1984
+1.81 m
+Liverpool (ENG)
+13
+Juan Mata
+28-Apr-1988
+1.74 m
+Valencia (ESP)
+18
+Pedro
+28-Jul-1987
+1.69 m
+Barcelona (ESP)
+19
+Fernando Llorente
+26-Feb-1985
+1.94 m
+Athletic Bilbao (ESP)
+22
+Jesus Navas
+21-Nov-1985
+1.72 m
+Sevilla FC (ESP)
