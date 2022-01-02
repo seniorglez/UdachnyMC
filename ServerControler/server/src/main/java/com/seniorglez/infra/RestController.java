@@ -9,6 +9,7 @@ import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.login.ValidateToken;
 import com.seniorglez.aplication.sendMessage.SendMessage;
+import com.seniorglez.domain.RestPort;
 import com.seniorglez.domain.model.*;
 import java.io.File;
 import java.io.OutputStream;
@@ -17,7 +18,7 @@ import java.nio.file.Files;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
-public class RestController {
+public class RestController extends RestPort {
 
     private final Process mcProcess;
     private final SendMessage sendMessage;
@@ -29,8 +30,8 @@ public class RestController {
         this.gson = new Gson();
     }
 
-    public void start() {
-
+    @Override
+    protected void mapPostMCEndpoint() {
         post("/mc", (request, response) -> {
             CommandRequest commandRequest = gson.fromJson(request.body(), CommandRequest.class);
             EndpointResponse res = new PostMinecraftCommand(this.mcProcess).execute(commandRequest);
@@ -38,7 +39,10 @@ public class RestController {
             response.type(res.getResponseType());
             return res.getResponseBody();
         });
+    }
 
+    @Override
+    protected void mapPostRequestTokenEndpoint() {
         post("/request_token", ((request, response) -> {
             QueryUser queryUser = gson.fromJson(request.body(), QueryUser.class);
             EndpointResponse res = new PostLogin().execute(queryUser);
@@ -47,6 +51,10 @@ public class RestController {
             return res.getResponseBody();
         }));
 
+    }
+
+    @Override
+    protected void mapPostUpdateEndpoint() {
         post("/update", (request, response) -> {
             String token = request.queryParams("token");
             if (new ValidateToken(new TokenManager()).execute(token)) {
@@ -58,7 +66,8 @@ public class RestController {
                     }
                     new RestartApplication();
                 }).start();
-                new UpdateServer(System.getProperty("user.home") + "minecraft-server/server.jar").execute(); // this is lame
+                new UpdateServer(System.getProperty("user.home") + "minecraft-server/server.jar").execute(); // this is
+                                                                                                             // lame
                 response.status(200);
                 return "Updating...";
             } else {
@@ -67,6 +76,10 @@ public class RestController {
             }
         });
 
+    }
+
+    @Override
+    protected void mapPostGetLogsEndpoint() {
         post("/get_logs", (request, response) -> {
             final String filename = "logs";
             String token = request.queryParams("token");
@@ -85,6 +98,10 @@ public class RestController {
             return res.getResponseBody();
         });
 
+    }
+
+    @Override
+    protected void mapGetWorldEndpoint() {
         get("/world", ((request, response) -> {
             final String filename = "world";
             response.header("Content-disposition", "attachment; filename=" + filename + ".zip;");
@@ -95,5 +112,6 @@ public class RestController {
             outputStream.flush();
             return response;
         }));
+
     }
 }
