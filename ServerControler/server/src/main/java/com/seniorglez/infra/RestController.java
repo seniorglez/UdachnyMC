@@ -18,7 +18,7 @@ import java.nio.file.Files;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
-public class RestController extends RestPort {
+public class RestController extends RestPort { 
 
     private final Process mcProcess;
     private final SendMessage sendMessage;
@@ -98,6 +98,16 @@ public class RestController extends RestPort {
             return res.getResponseBody();
         });
 
+    }
+
+
+    @Override
+    protected void mapPostGetServerJSON() {
+        post("/get_json", (request, response) -> {
+            return "";
+            
+        });
+        
     }
 
     @Override
