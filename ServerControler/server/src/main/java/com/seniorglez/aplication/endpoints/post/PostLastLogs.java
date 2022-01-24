@@ -16,8 +16,8 @@ public class PostLastLogs {
     class JsonResponse {
         private List<String> lines;
 
-        public JsonResponse(List<String> lines){
-            this.lines= lines;
+        public JsonResponse(List<String> lines) {
+            this.lines = lines;
         }
     }
     
@@ -29,7 +29,8 @@ public class PostLastLogs {
 
     public EndpointResponse execute(LogLineRequest logLineRequest){
         if (new ValidateToken(new TokenManager()).execute(logLineRequest.getToken())) {
-            List<String> lines = this.reads.readLastLines(Path.of(new File("/minecraft-server/logs/latest.log").getPath()), 15);
+            String home = System.getProperty("user.home");
+            List<String> lines = this.reads.readLastLines(Path.of(new File(home + "/minecraft-server/logs/latest.log").getPath()), 15);
             Gson gson = new Gson();
             return new EndpointResponse(200,"application/json",gson.toJson(new JsonResponse(lines)));
         }
