@@ -11,7 +11,7 @@ import com.seniorglez.infra.LogLineRequest;
 import com.seniorglez.infra.TokenManager;
 import com.google.gson.Gson;
 
-public class PostMinecraftLogs {
+public class PostLastLogs {
 
     class JsonResponse {
         private List<String> lines;
@@ -23,7 +23,7 @@ public class PostMinecraftLogs {
     
     private Reads reads;
 
-    public PostMinecraftLogs(Reads reads){
+    public PostLastLogs(Reads reads){
         this.reads =  reads;
     }
 
@@ -31,7 +31,7 @@ public class PostMinecraftLogs {
         if (new ValidateToken(new TokenManager()).execute(logLineRequest.getToken())) {
             List<String> lines = this.reads.readLastLines(Path.of(new File("/minecraft-server/logs/latest.log").getPath()), 15);
             Gson gson = new Gson();
-            return new EndpointResponse(200,"application/json",gson.toJson(lines));
+            return new EndpointResponse(200,"application/json",gson.toJson(new JsonResponse(lines)));
         }
         return new EndpointResponse(403,"application/json","{\n\"result\":\"The token is not valid\"\n}");
     }

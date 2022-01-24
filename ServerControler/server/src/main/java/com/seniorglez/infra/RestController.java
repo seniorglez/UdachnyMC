@@ -5,7 +5,7 @@ import com.seniorglez.aplication.endpoints.post.PostGetJSON;
 import com.seniorglez.aplication.endpoints.post.PostLogin;
 import com.seniorglez.aplication.endpoints.post.PostLogs;
 import com.seniorglez.aplication.endpoints.post.PostMinecraftCommand;
-import com.seniorglez.aplication.endpoints.post.PostMinecraftLogs;
+import com.seniorglez.aplication.endpoints.post.PostLastLogs;
 import com.seniorglez.aplication.lifeCicle.RestartApplication;
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.login.QueryUser;
@@ -134,7 +134,7 @@ public class RestController extends RestPort {
     protected void mapGetLastLogLines() {
         post("/logsLines", (request, response) -> {
             LogLineRequest logLineRequest = gson.fromJson(request.body(), LogLineRequest.class);
-            EndpointResponse res = new PostMinecraftLogs(new TailReader()).execute(logLineRequest);
+            EndpointResponse res = new PostLastLogs(new TailReader()).execute(logLineRequest);
             response.status(res.getResponseCode());
             response.type(res.getResponseType());
             return res.getResponseBody();
