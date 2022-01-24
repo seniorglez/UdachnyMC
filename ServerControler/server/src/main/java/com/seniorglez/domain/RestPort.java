@@ -8,6 +8,7 @@ public abstract class RestPort {
         mapPostUpdateEndpoint();
         mapPostGetLogsEndpoint();
         mapGetWorldEndpoint();
+        mapGetLastLogLines();
     }
 
     protected abstract void mapPostMCEndpoint();
@@ -21,5 +22,7 @@ public abstract class RestPort {
     protected abstract void mapPostGetServerJSON();
 
     protected abstract void mapGetWorldEndpoint();
+
+    protected abstract void mapGetLastLogLines();
     
 }
