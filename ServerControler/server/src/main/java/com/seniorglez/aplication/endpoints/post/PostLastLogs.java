@@ -23,14 +23,13 @@ public class PostLastLogs {
     
     private Reads reads;
 
-    public PostLastLogs(Reads reads){
+    public PostLastLogs(Reads reads) {
         this.reads =  reads;
     }
 
-    public EndpointResponse execute(LogLineRequest logLineRequest){
+    public EndpointResponse execute(LogLineRequest logLineRequest) {
         if (new ValidateToken(new TokenManager()).execute(logLineRequest.getToken())) {
-            String home = System.getProperty("user.home");
-            List<String> lines = this.reads.readLastLines(Path.of(new File(home + "/minecraft-server/logs/latest.log").getPath()), 15);
+            List<String> lines = this.reads.readLastLines(Path.of(new File("/minecraft-server/logs/latest.log").getPath()), logLineRequest.getNumber());
             Gson gson = new Gson();
             return new EndpointResponse(200,"application/json",gson.toJson(new JsonResponse(lines)));
         }
