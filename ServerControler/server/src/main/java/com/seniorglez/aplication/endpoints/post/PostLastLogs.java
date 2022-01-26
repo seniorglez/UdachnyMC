@@ -16,18 +16,18 @@ public class PostLastLogs {
     class JsonResponse {
         private List<String> lines;
 
-        public JsonResponse(List<String> lines){
-            this.lines= lines;
+        public JsonResponse(List<String> lines) {
+            this.lines = lines;
         }
     }
     
     private Reads reads;
 
-    public PostLastLogs(Reads reads){
+    public PostLastLogs(Reads reads) {
         this.reads =  reads;
     }
 
-    public EndpointResponse execute(LogLineRequest logLineRequest){
+    public EndpointResponse execute(LogLineRequest logLineRequest) {
         if (new ValidateToken(new TokenManager()).execute(logLineRequest.getToken())) {
             List<String> lines = this.reads.readLastLines(Path.of(new File("/minecraft-server/logs/latest.log").getPath()), logLineRequest.getNumber());
             Gson gson = new Gson();
