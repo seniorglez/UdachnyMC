@@ -34,31 +34,29 @@ To run just the API call:
      docker-compose up
 ```
 
-To run the API with the front call:
+WIP: To run the API with the front call:
 
 ```bash
      docker-compose --profile front up
+```
+
+The first time the containers go up they will generate a new directory where the minecraft server will generate it's files, called server. As you will probably known the minecraft server has the eula.txt file which allow the users to agree with [the minecraft eula policy](https://account.mojang.com/documents/minecraft_eula). In order to run the server and have the whole infraestucture running you will need to change the value eula to true like shown:
+
+```
+#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
+#Mon Jan 03 18:51:55 UTC 2022
+     eula=true
 ```
 
 ## Connect to the Minecraft server
 
 The server will use the default port: 25565 so if your are running this in your machine just enter your localhost: 127.0.0.1 and if this is running on a server just enter the server ip.
 
-## Built With
-
-* [Maven](https://maven.apache.org/) - The software project management tool.
-* [Spark](http://sparkjava.com/) - The framework for creating web applications.
-* [JJWT](https://github.com/jwtk/jjwt) - The JSON Web Token library for Java and Android.
-* [Gson](https://github.com/google/gson) - The Google's JSON converter.
-* [JUnit](https://junit.org/junit4/) - The unit testing framework.
-* [Docker](https://www.docker.com/) - The whale of the containers?
-* [Docker-compose](https://docs.docker.com/compose/) - The tool for running multi-container Docker applications.
-* [fucntionalJava](https://github.com/seniorglez/functionalJava) - My own functinal java library.
-
-
 ## Contributing
 
 Feel free to fork it and made pull request if you think that your own version is better or adds new functionalities. 
+
+You should probably check the DevGuide.
 
 ## Authors
 
