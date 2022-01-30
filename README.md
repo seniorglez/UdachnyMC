@@ -40,7 +40,7 @@ WIP: To run the API with the front call:
      docker-compose --profile front up
 ```
 
-The first time the containers go up they will generate a new directory where the minecraft server will generate it's files, called server. As you will probably known the minecraft server has the eula.txt file which allow the users to agree with [the minecraft eula policy](https://account.mojang.com/documents/minecraft_eula). In order to run the server and have the whole infraestucture running you will need to change the value eula to true like shown:
+The first time the containers go up they will create a new directory where the minecraft server will generate it's files, called server. As you will probably known the minecraft server has the eula.txt file which allow the users to agree with [the minecraft eula policy](https://account.mojang.com/documents/minecraft_eula). In order to run the server and have the whole infraestucture running you will need to change the value eula to true like shown:
 
 ```
 #By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).
@@ -54,20 +54,17 @@ The server will use the default port: 25565 so if your are running this in your 
 
 ## Contributing
 
-Feel free to fork it and made pull request if you think that your own version is better or adds new functionalities. 
+Feel free to fork it and made pull request if you think that your own version is better or adds new functionalities. You can also help with any open issues or add new ones.
 
 You should probably check the DevGuide.
 
 ## Authors
 
-* **Diego Dominguez**   <a href="https://twitter.com/DGlez1111" target="_blank">
-    <img alt="Twitter: DGlez1111" src="https://img.shields.io/twitter/follow/DGlez1111.svg?style=social" />
-  </a> - Programmer
-  
-* **Adrian Velasco**   <a href="https://twitter.com/yelsiadri" target="_blank">
-    <img alt="Twitter: yelsiadri" src="https://img.shields.io/twitter/follow/yelsiadri.svg?style=social" />
-  </a> - 3D Technical Artist
+<a href="https://github.com/seniorglez/UdachnyMC/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=seniorglez/UdachnyMC" />
+</a>
 
+Thanks also to  <a href="https://twitter.com/yelsiadri" target="_blank">Adrián Velasco</a> for the cool meshes.
 
 ## License
 
