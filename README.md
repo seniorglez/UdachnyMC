@@ -70,7 +70,7 @@ Thanks also to  <a href="https://twitter.com/yelsiadri" target="_blank">Adrián 
 
 ### UdachnyMC
 
-Copyright (C) 2020 Diego Dominguez Gonzalez
+Copyright (C) 2022 Diego Dominguez Gonzalez
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License 
 as published by the Free Software Foundation; either version 3 of the License, or any later version.
