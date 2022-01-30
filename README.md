@@ -56,7 +56,7 @@ The server will use the default port: 25565 so if your are running this in your 
 
 Feel free to fork it and made pull request if you think that your own version is better or adds new functionalities. You can also help with any open issues or add new ones.
 
-You should probably check the DevGuide.
+You should probably check the [DevGuide](docs/DevGuide).
 
 ## Authors
 
