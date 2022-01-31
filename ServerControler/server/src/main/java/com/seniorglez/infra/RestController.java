@@ -10,7 +10,6 @@ import com.seniorglez.aplication.lifeCicle.RestartApplication;
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.login.ValidateToken;
-import com.seniorglez.aplication.sendMessage.SendMessage;
 import com.seniorglez.domain.RestPort;
 import com.seniorglez.domain.model.*;
 import java.io.File;
@@ -19,17 +18,29 @@ import java.nio.file.Files;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.internalServerError;
+import static spark.Spark.notFound;
 
 public class RestController extends RestPort { 
 
     private final Process mcProcess;
-    private final SendMessage sendMessage;
     private final Gson gson;
 
-    public RestController(Process mcProcess, SendMessage sendMessage) {
+    public RestController(Process mcProcess) {
         this.mcProcess = mcProcess;
-        this.sendMessage = sendMessage;
         this.gson = new Gson();
+        sparkConfiguration();
+    }
+
+    private void sparkConfiguration() {
+        notFound((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Not found\"}";
+        });
+        internalServerError((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Internal Server Error\"}";
+        });
     }
 
     @Override
@@ -82,7 +93,7 @@ public class RestController extends RestPort {
 
     @Override
     protected void mapPostGetLogsEndpoint() {
-        post("/get_logs", (request, response) -> {
+        post("/logs", (request, response) -> {
             final String filename = "logs";
             String token = request.queryParams("token");
             EndpointResponse res = new PostLogs(new Zippo()).execute(token, "/root/" + filename,
@@ -101,7 +112,6 @@ public class RestController extends RestPort {
         });
 
     }
-
 
     @Override
     protected void mapPostGetServerJSON() {
@@ -132,7 +142,7 @@ public class RestController extends RestPort {
 
     @Override
     protected void mapGetLastLogLines() {
-        post("/logsLines", (request, response) -> {
+        post("/last_logs", (request, response) -> {
             LogLineRequest logLineRequest = gson.fromJson(request.body(), LogLineRequest.class);
             EndpointResponse res = new PostLastLogs(new TailReader()).execute(logLineRequest);
             response.status(res.getResponseCode());
