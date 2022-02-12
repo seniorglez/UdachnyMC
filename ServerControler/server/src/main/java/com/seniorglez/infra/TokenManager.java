@@ -38,7 +38,7 @@ public class TokenManager implements Tokens {
         return false;
     }
 
-    private Jws<Claims> decodeJWT(String token ) {
+    private Jws<Claims> decodeJWT(String token) {
         if ( token == null || token.isEmpty() ) return null;
         Jws<Claims> jws;
         jws = Jwts.parserBuilder()

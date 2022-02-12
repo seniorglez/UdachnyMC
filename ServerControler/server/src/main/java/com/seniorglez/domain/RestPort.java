@@ -3,6 +3,7 @@ package com.seniorglez.domain;
 public abstract class RestPort {
 
     public void start() {
+        mapMainEndpoint();
         mapPostMCEndpoint();
         mapPostRequestTokenEndpoint();
         mapPostUpdateEndpoint();
@@ -10,6 +11,8 @@ public abstract class RestPort {
         mapGetWorldEndpoint();
         mapGetLastLogLines();
     }
+
+    protected abstract void mapMainEndpoint();
 
     protected abstract void mapPostMCEndpoint();
 

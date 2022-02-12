@@ -12,6 +12,9 @@ import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.login.ValidateToken;
 import com.seniorglez.domain.RestPort;
 import com.seniorglez.domain.model.*;
+
+import org.eclipse.jetty.client.api.Response;
+
 import java.io.File;
 import java.io.OutputStream;
 import java.nio.file.Files;
@@ -40,6 +43,23 @@ public class RestController extends RestPort {
         internalServerError((req, res) -> {
             res.type("application/json");
             return "{\"message\":\"Internal Server Error\"}";
+        });
+    }
+
+    @Override
+    protected void mapMainEndpoint() {
+        get("/", (request,response)->{
+            response.status(200);
+            response.type("application/json");
+            return new Gson().toJson(new Object() {//Edditing a JSON in java is so lame, that's why I'm doing this
+                String request_jwt = "";
+                String send_mc_command = "";
+                String update_server = "";
+                String get_mc_logs = "";
+                String get_json = "";
+                String get_world = "";
+                String get_last_logs = "";
+            });
         });
     }
 
