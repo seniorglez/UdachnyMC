@@ -50,7 +50,7 @@ public class RestController extends RestPort {
         //int minThreads = Integer.parseInt( propertiesReader.getProperty("minThreads"));
         //int timeOutMillis = Integer.parseInt( propertiesReader.getProperty("timeOutMillis"));
         //threadPool(maxThreads, minThreads, timeOutMillis);
-        threadPool(2, 1, 30000);
+        threadPool(8, 3, 30000);
     }
 
     @Override
