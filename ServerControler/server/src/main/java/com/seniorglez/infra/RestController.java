@@ -45,10 +45,12 @@ public class RestController extends RestPort {
             res.type("application/json");
             return "{\"message\":\"Internal Server Error\"}";
         });
-        int maxThreads = Integer.parseInt( propertiesReader.getProperty("maxThreads "));
-        int minThreads = Integer.parseInt( propertiesReader.getProperty("minThreads"));
-        int timeOutMillis = Integer.parseInt( propertiesReader.getProperty("timeOutMillis"));
-        threadPool(maxThreads, minThreads, timeOutMillis);
+        // getProperty returns null wtf...
+        //int maxThreads = Integer.parseInt( propertiesReader.getProperty("maxThreads "));
+        //int minThreads = Integer.parseInt( propertiesReader.getProperty("minThreads"));
+        //int timeOutMillis = Integer.parseInt( propertiesReader.getProperty("timeOutMillis"));
+        //threadPool(maxThreads, minThreads, timeOutMillis);
+        threadPool(2, 1, 30000);
     }
 
     @Override
