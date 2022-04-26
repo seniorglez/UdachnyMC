@@ -15,7 +15,7 @@ public class Start {
                 return;
         }
         Process mcProcess = createMinecraftProcess(new File(home + "/minecraft-server"));
-        printMinecraftProcessOutput(mcProcess);
+        getPrintMinecraftProcessOutputThead(mcProcess);
         PropertiesReader propertiesReader = new PropertiesReader("config");
         new RestController(mcProcess, propertiesReader).start();
     }
@@ -28,7 +28,7 @@ public class Start {
         return mcProcess;
     }
 
-    private static Thread printMinecraftProcessOutput(Process mcProcess) {
+    private static Thread getPrintMinecraftProcessOutputThead(Process mcProcess) {
         InputStream serverOutput = mcProcess.getInputStream();
         Thread printThread = new Thread(() -> {
             Stream<String> lines = new BufferedReader(new InputStreamReader(serverOutput)).lines();

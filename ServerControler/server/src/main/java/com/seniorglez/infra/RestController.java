@@ -59,13 +59,13 @@ public class RestController extends RestPort {
             response.status(200);
             response.type("application/json");
             return new Gson().toJson(new Object() {//Edditing a JSON in java is so lame, that's why I'm doing this
-                String request_jwt = "";
-                String send_mc_command = "";
-                String update_server = "";
-                String get_mc_logs = "";
-                String get_json = "";
-                String get_world = "";
-                String get_last_logs = "";
+                String request_jwt = "/request_token";
+                String send_mc_command = "/mc";
+                String update_server = "/update";
+                String get_mc_logs = "/logs";
+                String get_json = "/get_json";
+                String get_world = "/world";
+                String get_last_logs = "/last_logs";
             });
         });
     }
