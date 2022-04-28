@@ -10,26 +10,67 @@ import com.seniorglez.aplication.lifeCicle.RestartApplication;
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.login.QueryUser;
 import com.seniorglez.aplication.login.ValidateToken;
-import com.seniorglez.aplication.sendMessage.SendMessage;
 import com.seniorglez.domain.RestPort;
 import com.seniorglez.domain.model.*;
+
 import java.io.File;
 import java.io.OutputStream;
 import java.nio.file.Files;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.internalServerError;
+import static spark.Spark.notFound;
+import static spark.Spark.threadPool;
 
 public class RestController extends RestPort { 
 
     private final Process mcProcess;
-    private final SendMessage sendMessage;
     private final Gson gson;
+    private final PropertiesReader propertiesReader;
 
-    public RestController(Process mcProcess, SendMessage sendMessage) {
+    public RestController(Process mcProcess, PropertiesReader propertiesReader) {
         this.mcProcess = mcProcess;
-        this.sendMessage = sendMessage;
         this.gson = new Gson();
+        this.propertiesReader = propertiesReader;
+        sparkConfiguration(this.propertiesReader);
+    }
+
+    private void sparkConfiguration(PropertiesReader propertiesReader) {
+        notFound((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Not found\"}";
+        });
+        internalServerError((req, res) -> {
+            res.type("application/json");
+            return "{\"message\":\"Internal Server Error\"}";
+        });
+        // getProperty returns null wtf...
+        //int maxThreads = Integer.parseInt( propertiesReader.getProperty("maxThreads "));
+        //int minThreads = Integer.parseInt( propertiesReader.getProperty("minThreads"));
+        //int timeOutMillis = Integer.parseInt( propertiesReader.getProperty("timeOutMillis"));
+        //threadPool(maxThreads, minThreads, timeOutMillis);
+        threadPool(8, 3, 30000);
+    }
+
+    @Override
+    protected void mapMainEndpoint() {
+        get("/", (request,response)->{
+            response.status(200);
+            response.type("application/json");
+            /* UNSCAPED JSON
+            {
+                "request_jwt": "/request_token",
+                "send_mc_command": "/mc",
+                "update_server": "/update",
+                "get_mc_logs": "/logs",
+                "get_json": "/get_json",
+                "get_world": "/world",
+                "get_last_logs": "/last_logs"
+            }
+            */
+            return "{\r\n  \"request_jwt\": \"/request_token\",\r\n  \"send_mc_command\": \"/mc\",\r\n  \"update_server\": \"/update\",\r\n  \"get_mc_logs\": \"/logs\",\r\n  \"get_json\": \"/get_json\",\r\n  \"get_world\": \"/world\",\r\n  \"get_last_logs\": \"/last_logs\"\r\n}";
+        });
     }
 
     @Override
@@ -82,7 +123,7 @@ public class RestController extends RestPort {
 
     @Override
     protected void mapPostGetLogsEndpoint() {
-        post("/get_logs", (request, response) -> {
+        post("/logs", (request, response) -> {
             final String filename = "logs";
             String token = request.queryParams("token");
             EndpointResponse res = new PostLogs(new Zippo()).execute(token, "/root/" + filename,
@@ -101,7 +142,6 @@ public class RestController extends RestPort {
         });
 
     }
-
 
     @Override
     protected void mapPostGetServerJSON() {
@@ -132,7 +172,7 @@ public class RestController extends RestPort {
 
     @Override
     protected void mapGetLastLogLines() {
-        post("/logsLines", (request, response) -> {
+        post("/last_logs", (request, response) -> {
             LogLineRequest logLineRequest = gson.fromJson(request.body(), LogLineRequest.class);
             EndpointResponse res = new PostLastLogs(new TailReader()).execute(logLineRequest);
             response.status(res.getResponseCode());

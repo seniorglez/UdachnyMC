@@ -1,8 +1,7 @@
 package com.seniorglez;
 
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
-import com.seniorglez.aplication.sendMessage.SendMessage;
-import com.seniorglez.infra.CommandSender;
+import com.seniorglez.infra.PropertiesReader;
 import com.seniorglez.infra.RestController;
 import java.io.*;
 import java.util.stream.Stream;
@@ -16,8 +15,9 @@ public class Start {
                 return;
         }
         Process mcProcess = createMinecraftProcess(new File(home + "/minecraft-server"));
-        printMinecraftProcessOutput(mcProcess);
-        new RestController(mcProcess, new SendMessage(new CommandSender(mcProcess))).start();
+        getPrintMinecraftProcessOutputThead(mcProcess);
+        PropertiesReader propertiesReader = new PropertiesReader("config");
+        new RestController(mcProcess, propertiesReader).start();
     }
 
     private static Process createMinecraftProcess(File home) throws IOException {
@@ -28,7 +28,7 @@ public class Start {
         return mcProcess;
     }
 
-    private static Thread printMinecraftProcessOutput(Process mcProcess) {
+    private static Thread getPrintMinecraftProcessOutputThead(Process mcProcess) {
         InputStream serverOutput = mcProcess.getInputStream();
         Thread printThread = new Thread(() -> {
             Stream<String> lines = new BufferedReader(new InputStreamReader(serverOutput)).lines();
