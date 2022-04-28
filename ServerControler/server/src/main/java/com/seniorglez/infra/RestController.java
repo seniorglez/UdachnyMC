@@ -58,15 +58,18 @@ public class RestController extends RestPort {
         get("/", (request,response)->{
             response.status(200);
             response.type("application/json");
-            return new Gson().toJson(new Object() {//Edditing a JSON in java is so lame, that's why I'm doing this
-                String request_jwt = "/request_token";
-                String send_mc_command = "/mc";
-                String update_server = "/update";
-                String get_mc_logs = "/logs";
-                String get_json = "/get_json";
-                String get_world = "/world";
-                String get_last_logs = "/last_logs";
-            });
+            /* UNSCAPED JSON
+            {
+                "request_jwt": "/request_token",
+                "send_mc_command": "/mc",
+                "update_server": "/update",
+                "get_mc_logs": "/logs",
+                "get_json": "/get_json",
+                "get_world": "/world",
+                "get_last_logs": "/last_logs"
+            }
+            */
+            return "{\r\n  \"request_jwt\": \"/request_token\",\r\n  \"send_mc_command\": \"/mc\",\r\n  \"update_server\": \"/update\",\r\n  \"get_mc_logs\": \"/logs\",\r\n  \"get_json\": \"/get_json\",\r\n  \"get_world\": \"/world\",\r\n  \"get_last_logs\": \"/last_logs\"\r\n}";
         });
     }
 
