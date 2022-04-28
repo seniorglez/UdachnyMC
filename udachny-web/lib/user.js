@@ -1,4 +1,3 @@
-
 export function isLogged() {
     if (getToken('jwt')) {
         return true
@@ -17,15 +16,17 @@ export function deleteToken() {
 
 
 function getCookie(key) {
-    let name = key + "=";
-    let ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+    if (typeof document !== "undefined") {
+        let name = key + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
         }
     }
     return "";
@@ -41,5 +42,3 @@ function setCookie(key, value, exdays) {
 function deleteCookie(key) {
     setCookie(key, '', 0)
 }
-
-
