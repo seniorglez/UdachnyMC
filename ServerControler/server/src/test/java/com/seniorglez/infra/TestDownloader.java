@@ -2,6 +2,8 @@ package com.seniorglez.infra;
 
 import org.junit.Test;
 
+import com.seniorglez.infra.fileManagement.Downloader;
+
 public class TestDownloader {
 
     @Test

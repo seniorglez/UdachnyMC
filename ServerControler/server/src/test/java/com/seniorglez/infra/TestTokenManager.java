@@ -1,17 +1,19 @@
 package com.seniorglez.infra;
 
-import com.seniorglez.aplication.login.QueryUser;
+import com.seniorglez.aplication.useCases.loginUser.LoginUserInput;
+import com.seniorglez.infra.auth.TokenManagerImpl;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
 public class TestTokenManager {
 
-    private static final TokenManager tokenManager = new TokenManager();
+    private static final TokenManagerImpl tokenManager = new TokenManagerImpl();
 
     @Test
     public void testSmokeCreateToken() {
-        tokenManager.getTokenFrom(new QueryUser("UwU", "OwO"));
+        tokenManager.getTokenFrom(new LoginUserInput("UwU", "OwO"));
     }
 
     @Test
@@ -31,7 +33,7 @@ public class TestTokenManager {
 
     @Test
     public void testShouldReturnTrue() {
-        String token = tokenManager.getTokenFrom(new QueryUser("Macaulay_Culkin", "HomeAlone1980"));
+        String token = tokenManager.getTokenFrom(new LoginUserInput("Macaulay_Culkin", "HomeAlone1980"));
         assertTrue(tokenManager.validate(token));
     }
 

@@ -1,6 +1,8 @@
 package com.seniorglez.aplication.login;
 
-import com.seniorglez.domain.Users;
+import com.seniorglez.aplication.useCases.loginUser.LoginUser;
+import com.seniorglez.aplication.useCases.loginUser.LoginUserInput;
+import com.seniorglez.domain.UserRepository;
 import com.seniorglez.domain.model.User;
 import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;
@@ -15,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class TestLoginUser {
 
     @Mock
-    Users users = Mockito.mock(Users.class);
+    UserRepository userRepository = Mockito.mock(UserRepository.class);
 
     @Before
     public void init() {
@@ -24,8 +26,8 @@ public class TestLoginUser {
 
     @Test
     public void testConnection() {
-        Mockito.when(users.getUserByUsername("pepe")).thenReturn(new Result.Success< User, UserErrors >(new User("pepe","pass")));
-        Result res = new LoginUser(users).execute(new QueryUser("pepe","pass"));
+        Mockito.when(userRepository.getUserByUsername("pepe")).thenReturn(new Result.Success< User, UserErrors >(new User("pepe","pass")));
+        Result res = new LoginUser(userRepository).execute(new LoginUserInput("pepe","pass"));
         assertTrue(res instanceof Result.Success);
     }
 

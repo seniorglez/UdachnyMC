@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import com.seniorglez.domain.model.ReadErrors;
 import com.seniorglez.functionalJava.monads.Result;
+import com.seniorglez.infra.fileManagement.FileReaderImpl;
 
 import org.junit.Test;
 

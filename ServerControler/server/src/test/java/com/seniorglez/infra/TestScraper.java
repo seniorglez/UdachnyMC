@@ -2,6 +2,7 @@ package com.seniorglez.infra;
 
 import com.seniorglez.domain.model.ScrapingErrors;
 import com.seniorglez.functionalJava.monads.Result;
+import com.seniorglez.infra.fileManagement.Scraper;
 
 import org.junit.Ignore;
 import org.junit.Test;
