@@ -2,6 +2,7 @@ package com.seniorglez;
 
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.infra.api.v1.controllers.RestController;
+import com.seniorglez.infra.api.v1.controllers.UserController;
 import com.seniorglez.infra.fileManagement.PropertiesReader;
 
 import java.io.*;
@@ -19,6 +20,7 @@ public class Start {
         getPrintMinecraftProcessOutputThead(mcProcess);
         PropertiesReader propertiesReader = new PropertiesReader("config");
         //start controllers
+        new UserController().start();
     }
 
     private static Process createMinecraftProcess(File home) throws IOException {
