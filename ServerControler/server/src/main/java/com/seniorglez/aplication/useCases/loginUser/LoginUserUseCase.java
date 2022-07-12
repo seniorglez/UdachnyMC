@@ -38,7 +38,7 @@ public class LoginUserUseCase {
             return new LoginUserOutput(new Result.Failure< String, UserErrors >( UserErrors.USERNAME_NULL ));
         }
 
-        User user = userService.getUser(USERNAME, PASSWORD);
+        User user = userService.getUserFromCredentials(USERNAME, PASSWORD);
 
         if(!isNull(user)) {
             String token = tokenManager.getTokenFrom(user);

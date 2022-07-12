@@ -19,12 +19,16 @@ public class UserService {
         this.userRepository = new UserRepositoryJDBC();
     }
 
-    public User getUser(String username, String password) {
-        Result<User, UserErrors> result = this.userRepository.getUser(username,password);
+    public User getUserFromCredentials(String username, String password) {
+        Result<User, UserErrors> result = this.userRepository.getUserByUsername(username);
         if(result instanceof Result.Failure) {
             return null;
         }
-        return ((Result.Success<User, UserErrors>)result).getValue();
+        User user = ((Result.Success<User, UserErrors>)result).getValue();
+        if(!password.equals(user.getPassword())) {
+            return  null;
+        }
+        return user;
     }
 
     public User getUserByUsername(String username) {

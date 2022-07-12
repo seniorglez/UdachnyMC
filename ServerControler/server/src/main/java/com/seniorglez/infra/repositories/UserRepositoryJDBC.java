@@ -9,6 +9,7 @@ import com.seniorglez.functionalJava.monads.Result;
 
 public class UserRepositoryJDBC implements UserRepository {
 
+    @Override
     public Result< User, UserErrors > getUserByUsername( String username ) {
         String url = "jdbc:mysql://db/myschema";
         String query = "SELECT * FROM users WHERE username=?";
@@ -34,7 +35,6 @@ public class UserRepositoryJDBC implements UserRepository {
         }
     }
 
-    @Override
     public Result<User, UserErrors> getUser(String username, String password) {
         return this.getUserByUsername(username);//REFACTOR ME PLZ
     }
