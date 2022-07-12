@@ -1,7 +1,6 @@
 package com.seniorglez;
 
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
-import com.seniorglez.infra.api.v1.controllers.RestController;
 import com.seniorglez.infra.api.v1.controllers.UserController;
 import com.seniorglez.infra.fileManagement.PropertiesReader;
 

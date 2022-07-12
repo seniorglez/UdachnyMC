@@ -36,6 +36,6 @@ public class UserRepositoryJDBC implements UserRepository {
 
     @Override
     public Result<User, UserErrors> getUser(String username, String password) {
-        return null;
+        return this.getUserByUsername(username);//REFACTOR ME PLZ
     }
 }
