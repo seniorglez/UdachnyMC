@@ -1,7 +1,8 @@
 package com.seniorglez;
 
-import com.seniorglez.infra.PropertiesReader;
 import org.junit.Test;
+
+import com.seniorglez.infra.fileManagement.PropertiesReader;
 
 import static org.junit.Assert.assertTrue;
 

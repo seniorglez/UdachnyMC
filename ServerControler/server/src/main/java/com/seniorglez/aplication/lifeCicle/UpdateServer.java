@@ -5,8 +5,8 @@ import com.seniorglez.aplication.login.ScrapServerUrl;
 import com.seniorglez.domain.model.DownloadErrors;
 import com.seniorglez.domain.model.ScrapingErrors;
 import com.seniorglez.functionalJava.monads.Result;
-import com.seniorglez.infra.Downloader;
-import com.seniorglez.infra.Scraper;
+import com.seniorglez.infra.fileManagement.Downloader;
+import com.seniorglez.infra.fileManagement.Scraper;
 
 import java.io.File;
 

@@ -1,8 +1,9 @@
 package com.seniorglez;
 
 import com.seniorglez.aplication.lifeCicle.UpdateServer;
-import com.seniorglez.infra.PropertiesReader;
-import com.seniorglez.infra.RestController;
+import com.seniorglez.infra.api.v1.controllers.UserController;
+import com.seniorglez.infra.fileManagement.PropertiesReader;
+
 import java.io.*;
 import java.util.stream.Stream;
 
@@ -17,7 +18,8 @@ public class Start {
         Process mcProcess = createMinecraftProcess(new File(home + "/minecraft-server"));
         getPrintMinecraftProcessOutputThead(mcProcess);
         PropertiesReader propertiesReader = new PropertiesReader("config");
-        new RestController(mcProcess, propertiesReader).start();
+        //start controllers
+        new UserController().start();
     }
 
     private static Process createMinecraftProcess(File home) throws IOException {

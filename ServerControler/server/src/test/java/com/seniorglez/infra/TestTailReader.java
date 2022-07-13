@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.seniorglez.infra.fileManagement.TailReader;
+
 public class TestTailReader {
 
     Path p = Path.of(new File("src/test/resources/tail.txt").getPath());

@@ -6,5 +6,5 @@ public enum UserErrors {
     USERNAME_NULL,
     TIMEOUT,
     NO_RESPONSE,
-    USER_DOES_NOT_EXIST
+    WRONG_PASSWORD, USER_DOES_NOT_EXIST
 }
