@@ -5,5 +5,5 @@ public enum JSONErrors {
     TOKEN_NULL,
     TIMEOUT,
     NO_RESPONSE,
-    WRONG_PTOKEN
+    WRONG_TOKEN
 }
