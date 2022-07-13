@@ -1,6 +1,6 @@
 package com.seniorglez.infra;
 
-import com.seniorglez.aplication.useCases.loginUser.LoginUserInput;
+import com.seniorglez.domain.model.User;
 import com.seniorglez.infra.auth.TokenManagerImpl;
 
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class TestTokenManager {
 
     @Test
     public void testSmokeCreateToken() {
-        tokenManager.getTokenFrom(new LoginUserInput("UwU", "OwO"));
+        tokenManager.getTokenFrom(new User("foo","foo"));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class TestTokenManager {
 
     @Test
     public void testShouldReturnTrue() {
-        String token = tokenManager.getTokenFrom(new LoginUserInput("Macaulay_Culkin", "HomeAlone1980"));
+        String token = tokenManager.getTokenFrom(new User("Macaulay_Culkin", "HomeAlone1980"));
         assertTrue(tokenManager.validate(token));
     }
 
