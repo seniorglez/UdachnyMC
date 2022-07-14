@@ -2,8 +2,6 @@
 
 A java application which provides a API REST to execute commands on a minecraft server.
 
-DISCLAIMER: The front is an MVP that is not safe or pretty and will probably have a few functional bugs.
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine.
@@ -34,12 +32,6 @@ To run just the API call:
      docker-compose up
 ```
 
-WIP: To run the API with the front call:
-
-```bash
-     docker-compose --profile front up
-```
-
 The first time the containers go up they will create a new directory where the minecraft server will generate it's files, called server. As you will probably known the minecraft server has the eula.txt file which allow the users to agree with [the minecraft eula policy](https://account.mojang.com/documents/minecraft_eula). In order to run the server and have the whole infraestucture running you will need to change the value eula to true like shown:
 
 ```
@@ -63,8 +55,6 @@ You should probably check the [DevGuide](docs/DevGuide).
 <a href="https://github.com/seniorglez/UdachnyMC/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=seniorglez/UdachnyMC" />
 </a>
-
-Thanks also to  <a href="https://twitter.com/yelsiadri" target="_blank">Adrián Velasco</a> for the cool meshes.
 
 ## License
 
