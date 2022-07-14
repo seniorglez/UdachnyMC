@@ -2,6 +2,7 @@ package com.seniorglez.aplication.useCases.loginUser;
 
 
 import com.seniorglez.aplication.services.UserService;
+import com.seniorglez.aplication.services.impl.UserServiceImpl;
 import com.seniorglez.domain.TokenManager;
 import com.seniorglez.domain.model.User;
 import com.seniorglez.domain.model.UserErrors;
@@ -15,13 +16,13 @@ public class LoginUserUseCase {
     private final TokenManager tokenManager;
     private final UserService userService;
 
-    public LoginUserUseCase ( UserService userService, TokenManager tokenManager) {
+    public LoginUserUseCase (UserService userService, TokenManager tokenManager) {
        this.userService = userService;
        this.tokenManager = tokenManager;
     }
 
     public LoginUserUseCase () {
-        this.userService = new UserService();
+        this.userService = new UserServiceImpl();
         this.tokenManager = new TokenManagerImpl();
     }
 
