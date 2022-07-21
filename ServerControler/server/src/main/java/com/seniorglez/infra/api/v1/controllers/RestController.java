@@ -61,27 +61,6 @@ public class RestController {
         threadPool(8, 3, 30000);
     }
 
-
-    protected void mapMainEndpoint() {
-        get("/", (request,response)->{
-            response.status(200);
-            response.type("application/json");
-            /* UNSCAPED JSON
-            {
-                "request_jwt": "/request_token",
-                "send_mc_command": "/mc",
-                "update_server": "/update",
-                "get_mc_logs": "/logs",
-                "get_json": "/get_json",
-                "get_world": "/world",
-                "get_last_logs": "/last_logs"
-            }
-            */
-            return "{\r\n  \"request_jwt\": \"/request_token\",\r\n  \"send_mc_command\": \"/mc\",\r\n  \"update_server\": \"/update\",\r\n  \"get_mc_logs\": \"/logs\",\r\n  \"get_json\": \"/get_json\",\r\n  \"get_world\": \"/world\",\r\n  \"get_last_logs\": \"/last_logs\"\r\n}";
-        });
-    }
-
-
     protected void mapPostMCEndpoint() {
         post("/mc", (request, response) -> {
             CommandRequest commandRequest = gson.fromJson(request.body(), CommandRequest.class);
