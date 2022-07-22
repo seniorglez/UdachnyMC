@@ -10,17 +10,17 @@ import com.seniorglez.functionalJava.monads.Result;
 import com.seniorglez.infra.api.v1.requests.user.LogInRequest;
 import com.seniorglez.infra.api.v1.response.EndpointResponse;
 import com.seniorglez.infra.api.v1.response.builder.JWTResponseBuilder;
-import com.seniorglez.infra.auth.AuthFilter;
-import com.seniorglez.infra.auth.TokenManagerImpl;
+import com.seniorglez.infra.api.v1.auth.AuthFilter;
+import com.seniorglez.infra.api.v1.auth.TokenManagerImpl;
 import spark.Request;
 import spark.Response;
 
+import static com.seniorglez.infra.api.v1.Global.AUTH_ENDPOINT_PREFIX;
+import static com.seniorglez.infra.api.v1.Global.LOGIN_ENDPOINT;
 import static spark.Spark.before;
 import static spark.Spark.post;
 
 public class AuthController {
-
-    private static final String AUTH_ENDPOINT_PREFIX = "/auth";
 
     private final Gson GSON = new Gson();
 
@@ -34,7 +34,7 @@ public class AuthController {
         before(new AuthFilter(AUTH_ENDPOINT_PREFIX));
 
         // LOGIN ENDPOINT
-        post(AUTH_ENDPOINT_PREFIX + "/login", (request, response) -> login(request, response));
+        post(AUTH_ENDPOINT_PREFIX + LOGIN_ENDPOINT, (request, response) -> login(request, response));
 
     }
     private String login(Request request, Response response) {

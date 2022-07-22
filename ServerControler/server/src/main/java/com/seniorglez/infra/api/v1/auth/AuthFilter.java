@@ -1,4 +1,4 @@
-package com.seniorglez.infra.auth;
+package com.seniorglez.infra.api.v1.auth;
 import com.seniorglez.domain.TokenManager;
 import spark.Filter;
 import spark.Request;
@@ -6,6 +6,7 @@ import spark.Response;
 
 import java.util.logging.Logger;
 
+import static com.seniorglez.infra.api.v1.Global.LOGIN_ENDPOINT;
 import static java.util.Objects.isNull;
 import static spark.Spark.halt;
 
@@ -42,8 +43,7 @@ public class AuthFilter implements Filter {
     private static final Logger LOG = Logger.getLogger(AuthFilter.class.getName());
 
     private static final String TOKEN_PREFIX = "Bearer";
-    private static final String LOGIN_ENDPOINT = "/login";
-    private static final String REGISTRATION_ENDPOINT = "/registration";
+
     private static final String HTTP_POST = "POST";
 
     private final String authEndpointPrefix;

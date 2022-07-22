@@ -1,7 +1,7 @@
 package com.seniorglez.infra;
 
 import com.seniorglez.domain.model.User;
-import com.seniorglez.infra.auth.TokenManagerImpl;
+import com.seniorglez.infra.api.v1.auth.TokenManagerImpl;
 
 import org.junit.Test;
 
