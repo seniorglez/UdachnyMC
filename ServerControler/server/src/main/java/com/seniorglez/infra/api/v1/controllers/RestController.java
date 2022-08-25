@@ -1,11 +1,10 @@
 package com.seniorglez.infra.api.v1.controllers;
 
 import com.google.gson.Gson;
-import com.seniorglez.aplication.lifeCicle.RestartApplication;
 import com.seniorglez.aplication.useCases.GetLastLogs;
 import com.seniorglez.aplication.useCases.GetLogs;
 import com.seniorglez.aplication.useCases.PostMinecraftCommand;
-import com.seniorglez.aplication.useCases.getJSON.GetJSONUseCase;
+import com.seniorglez.aplication.useCases.JSON.getJSON.GetJSONUseCase;
 import com.seniorglez.domain.TokenManager;
 import com.seniorglez.infra.api.v1.response.EndpointResponse;
 import com.seniorglez.infra.api.v1.requests.command.CommandRequest;

@@ -4,7 +4,6 @@ import com.seniorglez.aplication.login.Download;
 import com.seniorglez.aplication.services.ServerService;
 import com.seniorglez.domain.model.DownloadErrors;
 import com.seniorglez.functionalJava.monads.Result;
-import com.seniorglez.infra.api.v1.auth.TokenManagerImpl;
 import com.seniorglez.infra.fileManagement.Downloader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,12 +47,13 @@ public class ServerServiceImpl implements ServerService {
     }
 
     @Override
-    public void stopServer() {
+    public boolean stopServer() {
         mcProcess.destroy();
+        return true;
     }
 
     @Override
-    public void updateServer() {
+    public boolean updateServer() {
         /*
         Result<String, ScrapingErrors> res = new ScrapServerUrl(new Scraper()).execute();
         if(res instanceof Result.Success) {
@@ -66,6 +66,22 @@ public class ServerServiceImpl implements ServerService {
         */
         String url = "https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar";
         Result<File, DownloadErrors> result = new Download(new Downloader()).execute(url,serverLocation);
+        if(result instanceof Result.Failure) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateServer(String targetVersion) {
+        //TODO: Implement a tool to get the minecraft servers download links
+        return false;
+    }
+
+    @Override
+    public String getVersion() {
+        //TODO: implement some kind of regex util to get the version form the head of latest.log file
+        return "x.xx.x";
     }
 
     private static Process createMinecraftProcess(File home) throws IOException {

@@ -1,4 +1,4 @@
-package com.seniorglez.aplication.useCases.loginUser;
+package com.seniorglez.aplication.useCases.auth.loginUser;
 
 
 import com.seniorglez.aplication.services.UserService;

@@ -1,4 +1,4 @@
-package com.seniorglez.aplication.useCases.loginUser;
+package com.seniorglez.aplication.useCases.auth.loginUser;
 
 import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;

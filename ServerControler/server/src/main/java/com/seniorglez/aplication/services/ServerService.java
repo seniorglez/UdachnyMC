@@ -4,7 +4,11 @@ public interface ServerService {
 
     boolean startServer();
 
-    void stopServer();
+    boolean stopServer();
 
-    void updateServer();
+    boolean updateServer();
+
+    boolean updateServer(String targetVersion);
+
+    String getVersion();
 }

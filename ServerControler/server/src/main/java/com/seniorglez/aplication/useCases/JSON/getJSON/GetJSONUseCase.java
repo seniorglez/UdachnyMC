@@ -1,4 +1,4 @@
-package com.seniorglez.aplication.useCases.getJSON;
+package com.seniorglez.aplication.useCases.JSON.getJSON;
 
 import com.seniorglez.domain.FileReader;
 import com.seniorglez.infra.api.v1.response.EndpointResponse;
