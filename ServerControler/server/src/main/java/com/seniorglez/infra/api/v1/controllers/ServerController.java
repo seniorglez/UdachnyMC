@@ -1,5 +1,6 @@
 package com.seniorglez.infra.api.v1.controllers;
 
+import com.seniorglez.aplication.useCases.server.getServerVersion.GetServerVersionOutput;
 import com.seniorglez.aplication.useCases.server.getServerVersion.GetServerVersionUseCase;
 import com.seniorglez.aplication.useCases.server.startServer.StartServerOutput;
 import com.seniorglez.aplication.useCases.server.startServer.StartServerUseCase;
@@ -8,11 +9,16 @@ import com.seniorglez.aplication.useCases.server.stopServerUseCase.StopServerUse
 import com.seniorglez.aplication.useCases.server.updateServerVersion.UpdateServerVersionInput;
 import com.seniorglez.aplication.useCases.server.updateServerVersion.UpdateServerVersionUseCase;
 import com.seniorglez.infra.api.v1.auth.AuthFilter;
+import com.seniorglez.infra.api.v1.response.EndpointResponse;
+import com.seniorglez.infra.api.v1.response.ResponseApplyer;
+import com.seniorglez.infra.api.v1.response.builder.GenericErrorResponseBuilder;
 import spark.Request;
 import spark.Response;
+import static spark.Spark.before;
+import static spark.Spark.put;
+import static spark.Spark.get;
 
 import static com.seniorglez.infra.api.v1.Global.AUTH_ENDPOINT_PREFIX;
-import static spark.Spark.*;
 
 public class ServerController {
 
@@ -45,16 +51,17 @@ public class ServerController {
         switch (id) {
             case "0":
                 StopServerOutput stopServerOutput = stopServerUseCase.execute();
+                response.status(200);
                 break;
             case "1":
                 StartServerOutput startServerOutput = startServerUseCase.execute();
+                response.status(200);
                 break;
             default:
-                response.status(406);
-                response.type("json"); //revisar
-                return "";
-
+                EndpointResponse endpointResponse = GenericErrorResponseBuilder.getGenericErrorEndpointResponse(406, "Invalid input, should be between 0 and 1.");
+                ResponseApplyer.apply(endpointResponse,response);
         }
+        return response;
     }
 
     private Object updateVersionServer(Request request, Response response) {
@@ -64,7 +71,7 @@ public class ServerController {
     }
 
     private Object getServerVersion(Request request, Response response) {
-        serverService.getVersion();
+        GetServerVersionOutput output = getServerVersionUseCase.execute();
         return response;
     }
 }
