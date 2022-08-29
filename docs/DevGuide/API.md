@@ -81,5 +81,5 @@ If I was just fixing a bug or refactoring some code I will use the front to test
 For example:
 
 ``` bash
-    curl: curl -d "{username: 'guest', password: 'guest'}" -X POST http://localhost:4567/request_token
+    curl -d "{user: 'guest', password: 'guest'}" -X POST http://localhost:4567/v1/auth/login
 ```
