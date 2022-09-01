@@ -1,6 +1,6 @@
 package com.seniorglez.infra.api.v1.requests.user;
 
-import com.seniorglez.aplication.useCases.loginUser.LoginUserInput;
+import com.seniorglez.aplication.useCases.auth.loginUser.LoginUserInput;
 
 public class LogInRequest {
 

@@ -1,4 +1,4 @@
-package com.seniorglez.infra.auth;
+package com.seniorglez.infra.api.v1.auth;
 
 import com.seniorglez.domain.TokenManager;
 import com.seniorglez.domain.model.User;
@@ -7,6 +7,8 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 import javax.crypto.SecretKey;
@@ -16,7 +18,9 @@ import static java.util.Objects.isNull;
 
 public class TokenManagerImpl implements TokenManager {
 
-    public static final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private static final SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+    private Logger logger = LoggerFactory.getLogger(TokenManagerImpl.class);
 
     @Override
     public String getTokenFrom(User user) {
@@ -38,7 +42,7 @@ public class TokenManagerImpl implements TokenManager {
             Date expirationDate = jwt.getBody().getExpiration();
             return expirationDate.after(new Date());
         } catch (Exception e) {
-            e.printStackTrace(); //TODO: Use  a logger instead of the StackTrace
+            logger.error(e.getMessage());
         }
         return false;
     }

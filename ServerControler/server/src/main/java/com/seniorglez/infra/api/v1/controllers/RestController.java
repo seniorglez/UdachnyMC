@@ -1,18 +1,16 @@
 package com.seniorglez.infra.api.v1.controllers;
 
 import com.google.gson.Gson;
-import com.seniorglez.aplication.lifeCicle.RestartApplication;
-import com.seniorglez.aplication.lifeCicle.UpdateServer;
 import com.seniorglez.aplication.useCases.GetLastLogs;
 import com.seniorglez.aplication.useCases.GetLogs;
 import com.seniorglez.aplication.useCases.PostMinecraftCommand;
-import com.seniorglez.aplication.useCases.getJSON.GetJSONUseCase;
+import com.seniorglez.aplication.useCases.JSON.getJSON.GetJSONUseCase;
 import com.seniorglez.domain.TokenManager;
 import com.seniorglez.infra.api.v1.response.EndpointResponse;
 import com.seniorglez.infra.api.v1.requests.command.CommandRequest;
 import com.seniorglez.infra.api.v1.requests.json.JSONRequest;
 import com.seniorglez.infra.api.v1.requests.log.LogLineRequest;
-import com.seniorglez.infra.auth.TokenManagerImpl;
+import com.seniorglez.infra.api.v1.auth.TokenManagerImpl;
 import com.seniorglez.infra.fileManagement.FileReaderImpl;
 import com.seniorglez.infra.fileManagement.PropertiesReader;
 import com.seniorglez.infra.fileManagement.TailReader;
@@ -70,38 +68,6 @@ public class RestController {
             return res.getResponseBody();
         });
     }
-
-
-    protected void mapPostRequestTokenEndpoint() {
-        
-
-    }
-
-
-    protected void mapPostUpdateEndpoint() {
-        post("/update", (request, response) -> {
-            String token = request.queryParams("token");
-            if(tokenManager.validate(token)) {
-                response.status(401);
-                response.type("JSON");
-                response.body("{}");
-                return response;
-            }
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(10000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    new RestartApplication();
-                }).start();
-                new UpdateServer(System.getProperty("user.home") + "minecraft-server/server.jar").execute(); // this is
-                                                                                                             // lame
-                response.status(200);
-                return "Updating...";
-        });
-    }
-
 
     protected void mapPostGetLogsEndpoint() {
         post("/logs", (request, response) -> {

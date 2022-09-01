@@ -1,6 +1,6 @@
 package com.seniorglez.infra.api.v1.controllers;
 
-import com.seniorglez.infra.auth.AuthFilter;
+import com.seniorglez.infra.api.v1.auth.AuthFilter;
 import spark.Request;
 import spark.Response;
 
@@ -9,14 +9,16 @@ import static spark.Spark.*;
 
 public class HelloWorldController {
 
+    private String ENDPOINT_PREFIX = "/v1/hello-world";
+
     public void init() {
         // AUTH FILTER
         before(new AuthFilter(AUTH_ENDPOINT_PREFIX));
 
-        get(AUTH_ENDPOINT_PREFIX + "/hello_world", (request, response) -> helloWorld(request, response));
+        get(ENDPOINT_PREFIX , (request, response) -> getHelloWorld(request, response));
     }
 
-    private Object helloWorld(Request request, Response response) {
+    private Object getHelloWorld(Request request, Response response) {
         return "helloWorld";
     }
 }

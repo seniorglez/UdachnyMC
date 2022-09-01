@@ -1,4 +1,4 @@
-package com.seniorglez.aplication.useCases.loginUser;
+package com.seniorglez.aplication.useCases.auth.loginUser;
 
 
 import com.seniorglez.aplication.services.UserService;
@@ -7,7 +7,7 @@ import com.seniorglez.domain.TokenManager;
 import com.seniorglez.domain.model.User;
 import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;
-import com.seniorglez.infra.auth.TokenManagerImpl;
+import com.seniorglez.infra.api.v1.auth.TokenManagerImpl;
 
 import static java.util.Objects.isNull;
 

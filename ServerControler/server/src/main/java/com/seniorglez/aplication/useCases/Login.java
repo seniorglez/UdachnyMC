@@ -1,8 +1,8 @@
 package com.seniorglez.aplication.useCases;
 
-import com.seniorglez.aplication.useCases.loginUser.LoginUserInput;
-import com.seniorglez.aplication.useCases.loginUser.LoginUserOutput;
-import com.seniorglez.aplication.useCases.loginUser.LoginUserUseCase;
+import com.seniorglez.aplication.useCases.auth.loginUser.LoginUserInput;
+import com.seniorglez.aplication.useCases.auth.loginUser.LoginUserOutput;
+import com.seniorglez.aplication.useCases.auth.loginUser.LoginUserUseCase;
 import com.seniorglez.infra.api.v1.response.EndpointResponse;
 import com.seniorglez.domain.model.UserErrors;
 import com.seniorglez.functionalJava.monads.Result;

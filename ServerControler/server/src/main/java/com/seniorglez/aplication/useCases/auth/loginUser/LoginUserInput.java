@@ -1,12 +1,12 @@
-package com.seniorglez.aplication.useCases.loginUser;
+package com.seniorglez.aplication.useCases.auth.loginUser;
 
 public class LoginUserInput {
     /**
-     * A string which represent the the user's username.
+     * A string which represent the user's username.
      */
     private String username;
     /**
-     * A string which represent the the user's password.
+     * A string which represent the user's password.
      */
     private String password;
 
